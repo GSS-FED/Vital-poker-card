@@ -1,8 +1,12 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import Landing from '../components/Landing'
-import Layout from '../components/layout'
+import '../css/reset.css'
 
-const IndexPage = () => <Landing />
+class IndexPage extends React.Component {
+  state = {}
+  render() {
+    return <>{<Landing />}</>
+  }
+}
 
 export default IndexPage
