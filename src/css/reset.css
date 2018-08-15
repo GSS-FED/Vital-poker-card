@@ -122,3 +122,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.gatsbyimg_wrapper {
+  position: relative !important;
+}
+.is-passthrough {
+  pointer-events: none;
+}
