@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Img_Blur from './QueryImgBlur'
+import ImgBlur from './QueryImgBlur'
 //import Img_TraceSvg from './QueryImgTraceSvg'
 import { TimelineMax, TweenMax, Linear } from 'gsap'
 import ScrollMagic from 'scrollmagic'
@@ -115,16 +115,47 @@ class Landing extends React.Component {
       <LandingWrapper>
         <div id="shadow-wrapper">234</div>
         <PockerLayer />
-        <Img_Blur imgName="landing-bg" customStyle={LandingStyle} />
-        <Img_Blur imgName="iMac" customStyle={iMacStyle} />
-        <Img_Blur imgName="Stand" customStyle={StandStyle} />
-        <Img_Blur imgName="Plant" customStyle={PlantStyle} />
-        <Img_Blur imgName="Mouse" customStyle={MouseStyle} />
-        <Img_Blur imgName="Keyboard" customStyle={KeyboardStyle} />
-        <Img_Blur imgName="Pencils" customStyle={PencilsStyle} />
-        {/* <Img_TraceSvg imgName="vital-logo-op" customStyle={LogoStyle} /> */}
-        <Img_Blur imgName="shadow" customStyle={ShadowStyle} />
-        <MagicBox id="magic-tester" />
+        <ImgBlur
+          imgName="landing-bg"
+          customStyle={LandingStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <ImgBlur
+          imgName="iMac"
+          customStyle={iMacStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <ImgBlur
+          imgName="Stand"
+          customStyle={StandStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <ImgBlur
+          imgName="Plant"
+          customStyle={PlantStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <ImgBlur
+          imgName="Mouse"
+          customStyle={MouseStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <ImgBlur
+          imgName="Keyboard"
+          customStyle={KeyboardStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <ImgBlur
+          imgName="Pencils"
+          customStyle={PencilsStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <ImgBlur
+          imgName="shadow"
+          customStyle={ShadowStyle}
+          WrapperClassName="is-passthrough"
+        />
+        <MagicBox id="magic-tester" WrapperClassName="is-passthrough" />
       </LandingWrapper>
     )
   }

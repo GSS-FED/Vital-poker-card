@@ -93,9 +93,6 @@ export default function withDragDrop(Component) {
     }
 
     render() {
-      console.log('!!===========highorder==============!!')
-      console.log(this.props)
-      console.log('!!===========highorder==============!!')
       const mouseX = this.state.mouseX
       const mouseY = this.state.mouseY
       const rotate = this.state.rotate

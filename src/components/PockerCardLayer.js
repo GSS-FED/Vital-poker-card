@@ -1,6 +1,6 @@
 import React, { createRef, forwardRef } from 'react'
 import styled from 'styled-components'
-import Img_Blur from './QueryImgTraceSvg'
+import ImgBlur from './QueryImgTraceSvg'
 import DragHighOrder from '../component__highOrder/DragMove'
 
 // compose function
@@ -13,7 +13,7 @@ const PockerCardDragPlayground = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 200;
+  z-index: 2;
 `
 const CardStyle = {
   position: 'absolute',
@@ -29,6 +29,9 @@ const CardStyle2 = {
   top: '70%',
   zIndex: '2',
 }
+const BasicCardStyle = {
+  width: '100%',
+}
 const Wrapper = {
   position: 'absolute',
   width: '9%',
@@ -40,19 +43,22 @@ const Wrapper = {
 class PockerCardWrapper extends React.Component {
   render() {
     let box = {
-      transform: `translateX(${this.props.mouseX - 930}px) translateY(${this
-        .props.mouseY - 100}px) rotate(${this.props.rotate}deg)`,
+      transform: `
+      translateX(${this.props.mouseX}px) 
+      translateY(${this.props.mouseY}px) 
+      rotate(${this.props.rotate}deg)`,
       'transform-origin': '50% 50%',
     }
+    const StyleMerged = { ...CardStyle, ...box }
     return (
       <div
-        style={box}
+        style={StyleMerged}
         ref={ref => {
           this.refs = ref
         }}
       >
         {/* {this.props.mouseX}, {this.props.mouseY} */}
-        <Img_Blur imgName="pocker0703" customStyle={CardStyle} />
+        <ImgBlur imgName={this.props.imgName} customStyle={BasicCardStyle} />
       </div>
     )
   }
@@ -77,9 +83,10 @@ class whatYouCanDo extends React.Component {
   render() {
     return (
       <PockerCardDragPlayground>
-        <DragCard />
+        <DragCard imgName="poker0703" />
+        <DragCard imgName="poker0303" />
         <div ref={ref => (this.ref = ref)}>test</div>
-        <Img_Blur imgName="pocker0703" customStyle={CardStyle2} />
+        <ImgBlur imgName="poker0703" customStyle={CardStyle2} />
       </PockerCardDragPlayground>
     )
   }
