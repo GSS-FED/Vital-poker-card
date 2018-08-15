@@ -11,11 +11,16 @@ export default function withDragDrop(Component) {
     x: 0,
     y: 0,
   }
+  let firstMousePosition = {
+    x: 0,
+    y: 0,
+  }
 
   return class extends React.Component {
     state = { mouseX: undefined, mouseY: undefined, rotate: 0, mouseCount: 0 }
 
     thatRef = createRef()
+    // this.props.children(this.state)
 
     componentDidMount() {
       console.log(this.ref, Component, 'yoyoyoyoyoyoyo', this.ref.refs)
@@ -35,18 +40,37 @@ export default function withDragDrop(Component) {
       this.setState({ mouseCount: finalcount })
     }
     handleMouse = e => {
-      console.log(e.clientX, e.clientY)
+      // console.log(e.clientX, e.clientY)
       MousePosition.x = e.clientX
       MousePosition.y = e.clientY
-      this.setState({ mouseX: e.clientX, mouseY: e.clientY })
+      this.setState({
+        mouseX: e.clientX - this.ref.refs.offsetLeft - firstMousePosition.x,
+        mouseY: e.clientY - this.ref.refs.offsetTop - firstMousePosition.y,
+      })
     }
     handleMouseDown = e => {
       e.preventDefault()
       console.log('card mousedown!')
+      if (this.state.mouseX === undefined) {
+        firstMousePosition.x = e.clientX - this.ref.refs.offsetLeft
+        firstMousePosition.y = e.clientY - this.ref.refs.offsetTop
+      } else {
+        firstMousePosition.x =
+          e.clientX - this.ref.refs.offsetLeft - this.state.mouseX
+        firstMousePosition.y =
+          e.clientY - this.ref.refs.offsetTop - this.state.mouseY
+      }
+      console.log(
+        firstMousePosition,
+        this.ref.refs.offsetLeft,
+        this.ref.refs.offsetTop
+      )
       document.addEventListener('mousemove', this.handleMouse)
     }
     handleMouseUp = e => {
       console.log('card mouseup!')
+      firstMousePosition.x = 0
+      firstMousePosition.y = 0
       document.removeEventListener('mousemove', this.handleMouse)
     }
 
@@ -59,7 +83,7 @@ export default function withDragDrop(Component) {
       CardPosition.x = MousePosition.x
       CardPosition.y = MousePosition.y
 
-      rotation = rotation * 0.9 + this.sigmoid(xVelocity) * 1
+      rotation = rotation * 0.9 + this.sigmoid(xVelocity) * 2
 
       if (Math.abs(rotation) < 0.01) rotation = 0
 
@@ -69,6 +93,9 @@ export default function withDragDrop(Component) {
     }
 
     render() {
+      console.log('!!===========highorder==============!!')
+      console.log(this.props)
+      console.log('!!===========highorder==============!!')
       const mouseX = this.state.mouseX
       const mouseY = this.state.mouseY
       const rotate = this.state.rotate
