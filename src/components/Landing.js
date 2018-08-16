@@ -2,16 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import ImgBlur from './QueryImgBlur'
 //import Img_TraceSvg from './QueryImgTraceSvg'
-import { TimelineMax, TweenMax, Linear } from 'gsap'
-import ScrollMagic from 'scrollmagic'
-import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
-import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
+// import { TimelineMax, TweenMax, Linear } from 'gsap'
+// import ScrollMagic from 'scrollmagic'
+// import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
+// import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import PockerLayer from './PockerCardLayer'
 
 const LandingWrapper = styled.div`
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   width: 100vw;
   background-color: white;
+  z-index: 1;
 `
 const MagicBox = styled.div`
   height: 300px;
@@ -92,28 +94,27 @@ const ShadowStyle = {
 class Landing extends React.Component {
   state = {}
   componentDidMount() {
-    console.log('componentDidMount')
-    var controller = new ScrollMagic.Controller({
-      globalSceneOptions: { triggerHook: 'onEnter' },
-    })
-    var tween = TweenMax.to('#magic-tester', 0.5, {
-      scale: 1.3,
-      repeat: 5,
-      yoyo: true,
-    })
-    new ScrollMagic.Scene({
-      triggerElement: '#shadow-wrapper',
-      duration: '300',
-      offset: 1000,
-    })
-      .setTween(tween)
-      .addIndicators() // add indicators (requires plugin)
-      .addTo(controller)
+    // console.log('componentDidMount')
+    // var controller = new ScrollMagic.Controller({
+    //   globalSceneOptions: { triggerHook: 'onEnter' },
+    // })
+    // var tween = TweenMax.to('#magic-tester', 0.5, {
+    //   scale: 1.3,
+    //   repeat: 5,
+    //   yoyo: true,
+    // })
+    // new ScrollMagic.Scene({
+    //   triggerElement: '#shadow-wrapper',
+    //   duration: '300',
+    //   offset: 1000,
+    // })
+    //   .setTween(tween)
+    //   .addIndicators() // add indicators (requires plugin)
+    //   .addTo(controller)
   }
   render() {
     return (
       <LandingWrapper>
-        <div id="shadow-wrapper">234</div>
         <PockerLayer />
         <ImgBlur
           imgName="landing-bg"
@@ -155,7 +156,7 @@ class Landing extends React.Component {
           customStyle={ShadowStyle}
           WrapperClassName="is-passthrough"
         />
-        <MagicBox id="magic-tester" WrapperClassName="is-passthrough" />
+        {/* <MagicBox id="magic-tester" WrapperClassName="is-passthrough" /> */}
       </LandingWrapper>
     )
   }

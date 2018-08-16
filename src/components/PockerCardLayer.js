@@ -75,7 +75,7 @@ const DragCard = DragHighOrder(PockerCardWrapper)
 // DrageHighOrder(setting)(componet)
 // DrageHighOrder = (setting) => (component) => component
 
-class whatYouCanDo extends React.Component {
+class PockerCardLayer extends React.Component {
   state = {}
   componentDidMount() {
     console.log(this.ref, '/?????')
@@ -85,13 +85,10 @@ class whatYouCanDo extends React.Component {
       <PockerCardDragPlayground>
         <DragCard imgName="poker0703" />
         <DragCard imgName="poker0303" />
-        <div ref={ref => (this.ref = ref)}>test</div>
         <ImgBlur imgName="poker0703" customStyle={CardStyle2} />
       </PockerCardDragPlayground>
     )
   }
 }
 
-const Button = forwardRef((props, ref) => <div ref={ref}>test</div>)
-
-export default whatYouCanDo
+export default PockerCardLayer
