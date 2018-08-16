@@ -17,7 +17,13 @@ export default function withDragDrop(Component) {
   }
 
   return class extends React.Component {
-    state = { mouseX: undefined, mouseY: undefined, rotate: 0, mouseCount: 0 }
+    state = {
+      mouseX: undefined,
+      mouseY: undefined,
+      rotate: 0,
+      mouseCount: 0,
+      isDraging: false,
+    }
 
     thatRef = createRef()
     // this.props.children(this.state)
@@ -65,6 +71,7 @@ export default function withDragDrop(Component) {
         this.ref.refs.offsetLeft,
         this.ref.refs.offsetTop
       )
+      this.setState({ isDraging: true })
       document.addEventListener('mousemove', this.handleMouse)
     }
     handleMouseUp = e => {
@@ -72,6 +79,7 @@ export default function withDragDrop(Component) {
       firstMousePosition.x = 0
       firstMousePosition.y = 0
       document.removeEventListener('mousemove', this.handleMouse)
+      this.setState({ isDraging: false })
     }
 
     sigmoid = x => {
@@ -87,7 +95,7 @@ export default function withDragDrop(Component) {
 
       if (Math.abs(rotation) < 0.01) rotation = 0
 
-      this.setState({ rotate: rotation })
+      if (this.state.isDraging) this.setState({ rotate: rotation })
 
       requestAnimationFrame(this.update)
     }

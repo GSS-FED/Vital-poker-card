@@ -14,10 +14,11 @@ const Box = posed.div({
 
 const WhatYouCanDoWrapper = styled.div`
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   background-color: white;
   z-index: 2;
+  overflow: hidden;
 `
 const CircleWrapper = styled(Box)`
   position: absolute;
@@ -116,17 +117,11 @@ class whatYouCanDo extends React.Component {
       globalSceneOptions: { triggerHook: 'onEnter' },
     })
 
-    // new ScrollMagic.Scene({triggerElement: "#trigger2", duration: 300})
-    //             // animate color and top border in relation to scroll position
-    // 			.setTween("#animate2", {borderTop: "30px solid white", backgroundColor: "blue", scale: 0.7}) // the tween durtion can be omitted and defaults to 1
-    // 			.addIndicators({name: "2 (duration: 300)"}) // add indicators (requires plugin)
-    //     .addTo(controller);
-
     new ScrollMagic.Scene({
       triggerElement: '#sec2',
       duration: '700',
       offset: 500,
-      duration: 500,
+      duration: 600,
     })
       .setClassToggle(
         '#card-wrapper,#circlewrapper1,#circlewrapper2,#circlewrapper3',
@@ -134,9 +129,6 @@ class whatYouCanDo extends React.Component {
       )
       //.addIndicators() // add indicators (requires plugin)
       .addTo(controller)
-  }
-  state = {
-    isBgShow: false,
   }
   render() {
     return (

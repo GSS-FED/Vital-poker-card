@@ -85,6 +85,8 @@ class PockerCardLayer extends React.Component {
       <PockerCardDragPlayground>
         <DragCard imgName="poker0703" />
         <DragCard imgName="poker0303" />
+        <DragCard imgName="poker1004" />
+        <DragCard imgName="poker1201" />
         <ImgBlur imgName="poker0703" customStyle={CardStyle2} />
       </PockerCardDragPlayground>
     )
