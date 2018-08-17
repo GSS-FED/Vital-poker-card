@@ -20,7 +20,13 @@ const MagicBox = styled.div`
 const LandingStyle = {
   width: '100%',
 }
-
+const HeaderStyle = {
+  width: '100%',
+  position: 'absolute',
+  left: '0px',
+  top: '0px',
+  zIndex: '10',
+}
 const iMacStyle = {
   width: '70%',
   position: 'absolute',
@@ -92,6 +98,11 @@ class Landing extends React.Component {
   render() {
     return (
       <LandingWrapper>
+        <ImgBlur
+          imgName="header"
+          customStyle={HeaderStyle}
+          WrapperClassName="is-passthrough"
+        />
         <PockerLayer />
         <ImgBlur
           imgName="landing-bg"

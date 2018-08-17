@@ -42,6 +42,30 @@ const CardStyle4 = {
   top: '55%',
   zIndex: '2',
 }
+
+const CardStyle5 = {
+  position: 'absolute',
+  width: '9%',
+  left: '45%',
+  top: '75%',
+  zIndex: '2',
+}
+const CardStyle6 = {
+  position: 'absolute',
+  width: '9%',
+  left: '55%',
+  top: '75%',
+  zIndex: '2',
+}
+
+const CardStyle7 = {
+  position: 'absolute',
+  width: '9%',
+  left: '25%',
+  top: '75%',
+  zIndex: '2',
+}
+
 const BasicCardStyle = {
   width: '100%',
 }
@@ -60,7 +84,7 @@ class PockerCardWrapper extends React.Component {
       translateX(${this.props.mouseX}px) 
       translateY(${this.props.mouseY}px) 
       rotate(${this.props.rotate}deg)`,
-      'transform-origin': '50% 50%',
+      transformOrigin: '50% 50%',
     }
     const StyleMerged = { ...this.props.customStyle, ...box }
     return (
@@ -104,10 +128,13 @@ class PockerCardLayer extends React.Component {
   render() {
     return (
       <PockerCardDragPlayground>
-        <DragCard imgName="poker0703" customStyle={CardStyle1} />
-        <DragCard imgName="poker0303" customStyle={CardStyle2} />
-        <DragCard imgName="poker1004" customStyle={CardStyle3} />
-        <DragCard imgName="poker1201" customStyle={CardStyle4} />
+        <DragCard imgName="poker0503" customStyle={CardStyle1} />
+        <DragCard imgName="poker0403" customStyle={CardStyle2} />
+        <DragCard imgName="poker0601" customStyle={CardStyle3} />
+        <DragCard imgName="poker0701" customStyle={CardStyle4} />
+        <DragCard imgName="poker0904" customStyle={CardStyle5} />
+        <DragCard imgName="poker1004" customStyle={CardStyle6} />
+        <DragCard imgName="poker0303" customStyle={CardStyle7} />
       </PockerCardDragPlayground>
     )
   }

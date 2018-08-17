@@ -9,7 +9,7 @@ import posed, { PoseGroup } from 'react-pose'
 const Box = posed.div({
   draggable: true,
   // dragBounds: { left: '-100%', right: '100%' },
-  dragEnd: { transition: { type: 'spring' } },
+  dragEnd: { transition: { type: 'spring', stiffness: 500 } },
 })
 
 const WhatYouCanDoWrapper = styled.div`

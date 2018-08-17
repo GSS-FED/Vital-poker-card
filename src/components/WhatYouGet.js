@@ -172,7 +172,7 @@ class WhatYouGet extends React.Component {
           <NumberWrapper className="w2">
             {this.state.isNumberRun && (
               <>
-                <CountUp start={-2} end={2} duration={4.5} />
+                <CountUp start={7} end={2} duration={4.5} />
                 <Text>款鬼牌設計</Text>
               </>
             )}
