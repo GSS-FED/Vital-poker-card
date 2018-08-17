@@ -1,11 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import ImgBlur from './QueryImgBlur'
-//import Img_TraceSvg from './QueryImgTraceSvg'
-// import { TimelineMax, TweenMax, Linear } from 'gsap'
-// import ScrollMagic from 'scrollmagic'
-// import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
-// import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import PockerLayer from './PockerCardLayer'
 
 const LandingWrapper = styled.div`
@@ -93,25 +88,7 @@ const ShadowStyle = {
 
 class Landing extends React.Component {
   state = {}
-  componentDidMount() {
-    // console.log('componentDidMount')
-    // var controller = new ScrollMagic.Controller({
-    //   globalSceneOptions: { triggerHook: 'onEnter' },
-    // })
-    // var tween = TweenMax.to('#magic-tester', 0.5, {
-    //   scale: 1.3,
-    //   repeat: 5,
-    //   yoyo: true,
-    // })
-    // new ScrollMagic.Scene({
-    //   triggerElement: '#shadow-wrapper',
-    //   duration: '300',
-    //   offset: 1000,
-    // })
-    //   .setTween(tween)
-    //   .addIndicators() // add indicators (requires plugin)
-    //   .addTo(controller)
-  }
+  componentDidMount() {}
   render() {
     return (
       <LandingWrapper>

@@ -91,7 +91,7 @@ export default function withDragDrop(Component) {
       CardPosition.x = MousePosition.x
       CardPosition.y = MousePosition.y
 
-      rotation = rotation * 0.9 + this.sigmoid(xVelocity) * 2
+      rotation = rotation * 0.9 + this.sigmoid(xVelocity) * 3
 
       if (Math.abs(rotation) < 0.01) rotation = 0
 

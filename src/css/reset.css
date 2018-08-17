@@ -128,3 +128,11 @@ table {
 .is-passthrough {
   pointer-events: none;
 }
+.is-shadow {
+  width: 103%;
+  top: 3%;
+  left: -7%;
+  pointer-events: none;
+  position: absolute !important;
+  z-index: -1;
+}

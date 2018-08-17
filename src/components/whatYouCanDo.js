@@ -55,7 +55,60 @@ const CircleWrapper = styled(Box)`
     }
   }
 `
-const What = styled.div``
+
+const TriangleWrapper = styled(Box)`
+  position: absolute;
+  top: 75%;
+  left: 79%;
+  background-color: transparent;
+  width: 9vw;
+  height: 9vw;
+  opacity: 0.2;
+  transition: opacity 0.35s ease-in-out;
+  .is-passthrough {
+    opacity: 0;
+    transition: opacity 0.65s ease-in-out 0.5s;
+  }
+  &.is-show {
+    opacity: 1;
+    .is-passthrough {
+      opacity: 1;
+    }
+  }
+`
+
+const What = styled.span`
+  position: absolute;
+  z-index: 3;
+  font-size: 7vw;
+  font-family: 'PingFang TC';
+  top: 40%;
+  left: 11%;
+  color: #353942;
+  opacity: 0;
+  transform: translateY(70px);
+  transition: transform 0.85s ease-out 1.2s, opacity 0.35s ease-in-out 1.2s;
+  &.is-show {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`
+const YouGet = styled.span`
+  position: absolute;
+  z-index: 3;
+  font-size: 3vw;
+  font-family: 'PingFang TC';
+  top: 55%;
+  left: 12%;
+  color: #353942;
+  opacity: 0;
+  transform: translateY(70px);
+  transition: transform 0.85s ease-out 1.3s, opacity 0.35s ease-in-out 1.3s;
+  &.is-show {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`
 
 const BgWrapper = styled.div`
   position: absolute;
@@ -63,7 +116,7 @@ const BgWrapper = styled.div`
   width: 70%;
   height: 100%;
   opacity: 0;
-  transition: opacity 0.3s ease-in,
+  transition: opacity 0.8s ease-out 1.5s,
     transform 1.2s cubic-bezier(0, 0.73, 0.16, 1.01);
   transform: translateX(0px);
   z-index: 1;
@@ -98,11 +151,18 @@ const CCStyle3 = {
   left: '-5%',
   width: '115%',
 }
-const CCStyle3_2 = {
+const TriangleStyle = {
   position: 'absolute',
-  top: '10%',
-  left: '-5%',
-  width: '115%',
+  top: '0%',
+  left: '0%',
+  width: '100%',
+}
+
+const TriangleStyle2 = {
+  position: 'absolute',
+  top: '0%',
+  left: '0%',
+  width: '101%',
 }
 const dragbox = {
   width: '100px',
@@ -124,7 +184,7 @@ class whatYouCanDo extends React.Component {
       duration: 600,
     })
       .setClassToggle(
-        '#card-wrapper,#circlewrapper1,#circlewrapper2,#circlewrapper3',
+        '#card-wrapper,#circlewrapper1,#circlewrapper2,#circlewrapper3,#sec2_what,#sec2_YCD,#trianglewrapper',
         'is-show'
       )
       //.addIndicators() // add indicators (requires plugin)
@@ -133,6 +193,8 @@ class whatYouCanDo extends React.Component {
   render() {
     return (
       <WhatYouCanDoWrapper id="sec2">
+        <What id="sec2_what">What</What>
+        <YouGet id="sec2_YCD">You Can Do</YouGet>
         <BgWrapper id="card-wrapper">
           <ImgBlur
             imgName="sec2-bg"
@@ -163,6 +225,18 @@ class whatYouCanDo extends React.Component {
               WrapperClassName="is-passthrough"
             />
           </CircleWrapper>
+          <TriangleWrapper id="trianglewrapper">
+            <ImgBlur
+              imgName="triangleborder"
+              customStyle={TriangleStyle}
+              WrapperClassName=""
+            />
+            <ImgBlur
+              imgName="triangle"
+              customStyle={TriangleStyle2}
+              WrapperClassName="is-passthrough"
+            />
+          </TriangleWrapper>
           {/* </Box> */}
         </BgWrapper>
       </WhatYouCanDoWrapper>

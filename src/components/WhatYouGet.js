@@ -5,6 +5,7 @@ import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import CountUp from 'react-countup'
+
 const WhatYouGetWrapper = styled.div`
   height: 100vh;
   width: 100vw;
@@ -69,7 +70,7 @@ const What = styled.span`
   color: white;
   opacity: 0;
   transform: translateY(70px);
-  transition: transform 0.85s ease-out, opacity 0.35s ease-in-out;
+  transition: transform 0.85s ease-out 0.5s, opacity 0.35s ease-in-out 0.5s;
   &.is-show {
     opacity: 1;
     transform: translateY(0px);
@@ -85,7 +86,7 @@ const YouGet = styled.span`
   color: white;
   opacity: 0;
   transform: translateY(70px);
-  transition: transform 0.85s ease-out, opacity 0.35s ease-in-out;
+  transition: transform 0.85s ease-out 0.6s, opacity 0.35s ease-in-out 0.6s;
   &.is-show {
     opacity: 1;
     transform: translateY(0px);
@@ -150,6 +151,10 @@ class WhatYouGet extends React.Component {
         this.setState({ isNumberRun: true })
         console.log('#sec3 enter', this.state.isNumberRun)
       })
+      .on('leave', () => {
+        this.setState({ isNumberRun: false })
+        console.log('#sec3 enter', this.state.isNumberRun)
+      })
       .addTo(controller)
   }
   render() {
@@ -159,7 +164,7 @@ class WhatYouGet extends React.Component {
           <NumberWrapper>
             {this.state.isNumberRun && (
               <>
-                <CountUp start={0} end={54} duration={4.5} />
+                <CountUp start={14} end={54} duration={4.5} />
                 <Text>張牌</Text>
               </>
             )}
@@ -167,7 +172,7 @@ class WhatYouGet extends React.Component {
           <NumberWrapper className="w2">
             {this.state.isNumberRun && (
               <>
-                <CountUp start={0} end={2} duration={4.5} />
+                <CountUp start={-2} end={2} duration={4.5} />
                 <Text>款鬼牌設計</Text>
               </>
             )}
@@ -175,13 +180,13 @@ class WhatYouGet extends React.Component {
           <NumberWrapper className="w3">
             {this.state.isNumberRun && (
               <>
-                <CountUp start={0} end={28} duration={4.5} />
+                <CountUp start={7} end={28} duration={4.5} />
                 <Text>款UI介面</Text>
               </>
             )}
           </NumberWrapper>
-          <What id="what">WHAT</What>
-          <YouGet id="youget">YOU GET</YouGet>
+          <What id="what">What</What>
+          <YouGet id="youget">You Get</YouGet>
 
           <ImgBlur
             imgName="layer-shadow"

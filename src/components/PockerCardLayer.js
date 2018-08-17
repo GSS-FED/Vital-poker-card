@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import ImgBlur from './QueryImgTraceSvg'
 import DragHighOrder from '../component__highOrder/DragMove'
 
-// compose function
-// const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
-
 const PockerCardDragPlayground = styled.div`
   height: 100%;
   width: 100%;
@@ -15,18 +12,34 @@ const PockerCardDragPlayground = styled.div`
   left: 0px;
   z-index: 2;
 `
-const CardStyle = {
+const CardStyle1 = {
   position: 'absolute',
   width: '9%',
-  left: '60%',
-  top: '70%',
+  left: '35%',
+  top: '55%',
   zIndex: '2',
 }
+
 const CardStyle2 = {
   position: 'absolute',
   width: '9%',
-  left: '30%',
-  top: '70%',
+  left: '45%',
+  top: '55%',
+  zIndex: '2',
+}
+
+const CardStyle3 = {
+  position: 'absolute',
+  width: '9%',
+  left: '55%',
+  top: '55%',
+  zIndex: '2',
+}
+const CardStyle4 = {
+  position: 'absolute',
+  width: '9%',
+  left: '65%',
+  top: '55%',
   zIndex: '2',
 }
 const BasicCardStyle = {
@@ -36,7 +49,7 @@ const Wrapper = {
   position: 'absolute',
   width: '9%',
   left: '30%',
-  top: '70%',
+  top: '50%',
   zIndex: '4',
 }
 
@@ -49,7 +62,7 @@ class PockerCardWrapper extends React.Component {
       rotate(${this.props.rotate}deg)`,
       'transform-origin': '50% 50%',
     }
-    const StyleMerged = { ...CardStyle, ...box }
+    const StyleMerged = { ...this.props.customStyle, ...box }
     return (
       <div
         style={StyleMerged}
@@ -57,8 +70,16 @@ class PockerCardWrapper extends React.Component {
           this.refs = ref
         }}
       >
-        {/* {this.props.mouseX}, {this.props.mouseY} */}
-        <ImgBlur imgName={this.props.imgName} customStyle={BasicCardStyle} />
+        <ImgBlur
+          imgName={this.props.imgName}
+          customStyle={BasicCardStyle}
+          WrapperClassName=""
+        />
+        <ImgBlur
+          imgName={'pocker-shadow'}
+          customStyle={BasicCardStyle}
+          WrapperClassName="is-shadow"
+        />
       </div>
     )
   }
@@ -83,11 +104,10 @@ class PockerCardLayer extends React.Component {
   render() {
     return (
       <PockerCardDragPlayground>
-        <DragCard imgName="poker0703" />
-        <DragCard imgName="poker0303" />
-        <DragCard imgName="poker1004" />
-        <DragCard imgName="poker1201" />
-        <ImgBlur imgName="poker0703" customStyle={CardStyle2} />
+        <DragCard imgName="poker0703" customStyle={CardStyle1} />
+        <DragCard imgName="poker0303" customStyle={CardStyle2} />
+        <DragCard imgName="poker1004" customStyle={CardStyle3} />
+        <DragCard imgName="poker1201" customStyle={CardStyle4} />
       </PockerCardDragPlayground>
     )
   }
