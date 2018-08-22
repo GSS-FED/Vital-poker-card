@@ -10,7 +10,7 @@ import posed, { PoseGroup } from 'react-pose'
 
 const QuestionitemConfig = {
   open: { y: 0, opacity: 1, backgroundColor: '#ffffff' },
-  closed: { y: 100, opacity: 0, backgroundColor: '#000000' },
+  closed: { y: 200, opacity: 0, backgroundColor: '#000000' },
 }
 const Item = posed.div(QuestionitemConfig)
 
@@ -25,12 +25,24 @@ const QuestionOutterConfig = {
   initialPose: 'closed',
 }
 const QOW = posed.div(QuestionOutterConfig)
+
+const FAQsetting = {
+  open: { y: 0, opacity: 1, transition: { duration: 2200 } },
+  closed: { y: 100, opacity: 0, delay: 500, transition: { duration: 700 } },
+}
+const PosedFAQ = posed.div(FAQsetting)
+
+const ComBtnsetting = {
+  open: { scale: 1, opacity: 1, delay: 500, transition: { duration: 700 } },
+  closed: { scale: 0.8, opacity: 0, delay: 500, transition: { duration: 700 } },
+}
+const PosedComBtn = posed.div(ComBtnsetting)
 /* ------------------------------- */
 
 /* stylecomponent  init  */
 const FAQWrapper = styled.div`
   position: relative;
-  overflow: hidden;
+
   margin-top: 10%;
   height: 100vh;
   width: 100vw;
@@ -46,6 +58,9 @@ const HCWHPY = styled.div`
   font-size: 3vw;
   color: #000000;
 `
+const HelpYoubg = styled.span`
+  background-image: linear-gradient(202deg, #54c9f8 0%, #645eed 100%);
+`
 
 const QusetionOutterWrapper = styled(QOW)`
   position: relative;
@@ -53,6 +68,7 @@ const QusetionOutterWrapper = styled(QOW)`
   width: 50%;
   height: 80%;
   top: 20%;
+  overflow: hidden;
 `
 const QusetionItemsWrapper = styled(Item)`
   background: #ffffff;
@@ -62,7 +78,7 @@ const QusetionItemsWrapper = styled(Item)`
   width: 100%;
   margin-bottom: 2%;
 `
-const CommunityBtnWrapper = styled.div`
+const CommunityBtnWrapper = styled(PosedComBtn)`
   position: absolute;
   right: 5%;
   top: -3%;
@@ -83,13 +99,14 @@ const BookWrapeer = styled.div`
   width: 17vw;
   cursor: pointer;
 `
-const FAQText = styled.div`
+const FAQText = styled(PosedFAQ)`
   position: absolute;
   font-size: 10vw;
   ${props => props.theme.fontfamilyBold};
   color: #464545;
   top: 20%;
   left: 7%;
+  background-color: transparent;
 `
 const ImgbasicStyle = {
   witdh: '100%',
@@ -124,9 +141,11 @@ class FAQ extends React.Component {
   render() {
     return (
       <FAQWrapper id="sec4">
-        <FAQText>FAQ</FAQText>
-        <HCWHPY>How can we help you ?</HCWHPY>
-        <CommunityBtnWrapper>
+        <FAQText pose={this.state.isOpen ? 'open' : 'closed'}>FAQ</FAQText>
+        <HCWHPY>
+          How can we <HelpYoubg>help you</HelpYoubg> ?
+        </HCWHPY>
+        <CommunityBtnWrapper pose={this.state.isOpen ? 'open' : 'closed'}>
           <ImgBlur
             imgName="communitybtn"
             customStyle={ImgbasicStyle}
