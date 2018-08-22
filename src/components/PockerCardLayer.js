@@ -1,6 +1,6 @@
 import React, { createRef, forwardRef } from 'react'
 import styled from 'styled-components'
-import ImgBlur from './QueryImgTraceSvg'
+import ImgBlur from './QueryImgBlur'
 import DragHighOrder from '../component__highOrder/DragMove'
 
 const PockerCardDragPlayground = styled.div`

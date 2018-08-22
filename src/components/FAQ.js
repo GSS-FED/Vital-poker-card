@@ -30,6 +30,7 @@ const QOW = posed.div(QuestionOutterConfig)
 /* stylecomponent  init  */
 const FAQWrapper = styled.div`
   position: relative;
+  overflow: hidden;
   margin-top: 10%;
   height: 100vh;
   width: 100vw;
