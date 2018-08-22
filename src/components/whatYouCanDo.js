@@ -8,8 +8,15 @@ import posed, { PoseGroup } from 'react-pose'
 
 const Box = posed.div({
   draggable: true,
-  // dragBounds: { left: '-100%', right: '100%' },
   dragEnd: { transition: { type: 'spring', stiffness: 500 } },
+})
+
+const Fox = posed.div({
+  draggable: true,
+  init: { scale: 1 },
+  drag: { scale: 1.2 },
+  hover: { scale: 13 },
+  dragEnd: { x: 0, y: 0 },
 })
 
 const WhatYouCanDoWrapper = styled.div`
@@ -79,9 +86,9 @@ const TriangleWrapper = styled(Box)`
 
 const What = styled.span`
   position: absolute;
+  ${props => props.theme.fontfamilyBold};
   z-index: 3;
   font-size: 7vw;
-  font-family: 'PingFang TC';
   top: 40%;
   left: 11%;
   color: #353942;
@@ -95,6 +102,7 @@ const What = styled.span`
 `
 const YouGet = styled.span`
   position: absolute;
+  ${props => props.theme.fontfamilyReglar};
   z-index: 3;
   font-size: 3vw;
   font-family: 'PingFang TC';
@@ -179,7 +187,7 @@ class whatYouCanDo extends React.Component {
 
     new ScrollMagic.Scene({
       triggerElement: '#sec2',
-      duration: '700',
+      duration: '1000',
       offset: 500,
       duration: 600,
     })
@@ -193,8 +201,8 @@ class whatYouCanDo extends React.Component {
   render() {
     return (
       <WhatYouCanDoWrapper id="sec2">
-        <What id="sec2_what">What</What>
-        <YouGet id="sec2_YCD">You Can Do</YouGet>
+        <What id="sec2_what">WHAT</What>
+        <YouGet id="sec2_YCD">YOU CAN DO</YouGet>
         <BgWrapper id="card-wrapper">
           <ImgBlur
             imgName="sec2-bg"
@@ -217,7 +225,6 @@ class whatYouCanDo extends React.Component {
               WrapperClassName="is-passthrough"
             />
           </CircleWrapper>
-          {/* <Box> */}
           <CircleWrapper className="position3" id="circlewrapper3">
             <ImgBlur
               imgName="circle-content3"

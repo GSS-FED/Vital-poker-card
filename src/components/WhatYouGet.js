@@ -64,7 +64,7 @@ const What = styled.span`
   position: absolute;
   z-index: 3;
   font-size: 7vw;
-  font-family: 'PingFang TC';
+  ${props => props.theme.fontfamilyBold};
   top: 40%;
   left: 11%;
   color: white;
@@ -80,7 +80,7 @@ const YouGet = styled.span`
   position: absolute;
   z-index: 3;
   font-size: 3vw;
-  font-family: 'PingFang TC';
+  ${props => props.theme.fontfamilyReglar};
   top: 55%;
   left: 12%;
   color: white;
@@ -141,7 +141,7 @@ class WhatYouGet extends React.Component {
 
     new ScrollMagic.Scene({
       triggerElement: '#sec3',
-      duration: '700',
+      duration: '1000',
       offset: 300,
       duration: 600,
     })
@@ -185,8 +185,8 @@ class WhatYouGet extends React.Component {
               </>
             )}
           </NumberWrapper>
-          <What id="what">What</What>
-          <YouGet id="youget">You Get</YouGet>
+          <What id="what">WHAT</What>
+          <YouGet id="youget">YOU GET</YouGet>
 
           <ImgBlur
             imgName="layer-shadow"
