@@ -75,7 +75,7 @@ class Footer extends React.Component {
       globalSceneOptions: { triggerHook: 'onCenter' },
     })
     new ScrollMagic.Scene({
-      triggerElement: 'sec6',
+      triggerElement: '#sec6',
       duration: '1000',
       duration: 600,
     })

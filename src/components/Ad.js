@@ -1,5 +1,5 @@
-import React, { createRef, forwardRef } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import styled, { css } from 'styled-components'
 import ImgBlur from './QueryImgBlur'
 import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
@@ -50,12 +50,18 @@ const TextBox2 = styled.div`
   color: #464545;
   font-size: 2vw;
   ${props => props.theme.fontfamilyLight};
-  font-weight: 100;
-  white-space: pre;
+`
+const BoldText = styled.span`
+  font-weight: 900;
 `
 
 const ImgbasicStyle = {
   witdh: '100%',
+}
+const buttonStyle = {
+  position: 'absolute',
+  left: '43%',
+  top: '43%',
 }
 /* ------------------------------- */
 class Ad extends React.Component {
@@ -96,8 +102,11 @@ class Ad extends React.Component {
           />
         </BgWrapper>
         <TextBox>比起文字</TextBox>
-        <TextBox2>圖像&nbsp;&nbsp;更有感覺</TextBox2>
-        <PockerButton btnText="立即購買" />
+        <TextBox2>
+          <BoldText>圖像</BoldText>
+          &nbsp;&nbsp;更有感覺
+        </TextBox2>
+        <PockerButton btnText="立即購買" customStyle={buttonStyle} />
       </AdWrpaaer>
     )
   }

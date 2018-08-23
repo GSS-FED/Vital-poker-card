@@ -57,18 +57,21 @@ const HCWHPY = styled.div`
   ${props => props.theme.fontfamilyBold};
   font-size: 3vw;
   color: #000000;
+  white-space: nowrap;
 `
 const HelpYoubg = styled.span.attrs({
   text: 'help you',
 })`
   position: relative;
   color: transparent;
+  padding-left: 1%;
+  padding-right: 1%;
   &:after {
     font-size: 3vw;
     content: attr(text);
-    position: relative;
-    left: 0;
-    top: 0;
+    position: absolute;
+    left: 2%;
+    top: 15%;
     color: #000000;
     z-index: 3;
   }

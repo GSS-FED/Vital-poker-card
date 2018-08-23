@@ -714,6 +714,16 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@emotion/is-prop-valid@^0.6.5":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.6.6.tgz#9e1943d2db92e5350282551cb2eafdc9960582cb"
+  dependencies:
+    "@emotion/memoize" "^0.6.5"
+
+"@emotion/memoize@^0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.5.tgz#f868c314b889e7c3d84868a1d1cc323fbb40ca86"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -7213,12 +7223,12 @@ pngquant-bin@^3.0.0:
     bin-wrapper "^3.0.0"
     logalot "^2.0.0"
 
-popmotion-pose@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/popmotion-pose/-/popmotion-pose-2.1.2.tgz#90aa81e70f254f136fbc7c502f9b95b01ac946a9"
+popmotion-pose@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/popmotion-pose/-/popmotion-pose-3.0.1.tgz#0e7cac7aa9fab23f7b60ca548429aa241e47eac5"
   dependencies:
     popmotion "^8.3.3"
-    pose-core "^0.7.4"
+    pose-core "^1.0.0"
     style-value-types "^3.0.3"
     tslib "^1.9.1"
 
@@ -7240,9 +7250,9 @@ portfinder@^1.0.9:
     debug "^2.2.0"
     mkdirp "0.5.x"
 
-pose-core@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/pose-core/-/pose-core-0.7.4.tgz#21d64b6efe5eb7e0d1c2e7a111d0836ea00cdea5"
+pose-core@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/pose-core/-/pose-core-1.0.2.tgz#303edcd7fd5ccfb05ebe28632a0ec3f3f3ca0938"
   dependencies:
     "@types/invariant" "^2.2.29"
     "@types/node" "^10.0.5"
@@ -7869,12 +7879,13 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-pose@^2.2.1:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/react-pose/-/react-pose-2.2.3.tgz#5654d6211d77370da98d57627620ee65b5791736"
+react-pose@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-pose/-/react-pose-3.0.2.tgz#cc01ead1e04ba3d9f262d261c87fa53d00541a22"
   dependencies:
+    "@emotion/is-prop-valid" "^0.6.5"
     hey-listen "^1.0.5"
-    popmotion-pose "^2.1.2"
+    popmotion-pose "^3.0.0"
     tslib "^1.9.1"
 
 react-side-effect@^1.1.0:
