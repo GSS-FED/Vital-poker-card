@@ -71,11 +71,11 @@ class Footer extends React.Component {
     this.setState({ isOpen: !this.state.isOpen })
   }
   componentDidMount() {
-    var controller = new ScrollMagic.Controller({
+    let controller = new ScrollMagic.Controller({
       globalSceneOptions: { triggerHook: 'onCenter' },
     })
     new ScrollMagic.Scene({
-      triggerElement: '#sec',
+      triggerElement: 'sec6',
       duration: '1000',
       duration: 600,
     })

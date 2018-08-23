@@ -58,8 +58,31 @@ const HCWHPY = styled.div`
   font-size: 3vw;
   color: #000000;
 `
-const HelpYoubg = styled.span`
-  background-image: linear-gradient(202deg, #54c9f8 0%, #645eed 100%);
+const HelpYoubg = styled.span.attrs({
+  text: 'help you',
+})`
+  position: relative;
+  color: transparent;
+  &:after {
+    font-size: 3vw;
+    content: attr(text);
+    position: relative;
+    left: 0;
+    top: 0;
+    color: #000000;
+    z-index: 3;
+  }
+  &:before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 60%;
+    width: 100%;
+    height: 43%;
+    background-image: linear-gradient(202deg, #54c9f8 0%, #645eed 100%);
+    z-index: 2;
+    transform: translateY(-50%);
+  }
 `
 
 const QusetionOutterWrapper = styled(QOW)`

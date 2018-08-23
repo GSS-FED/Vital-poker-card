@@ -5,6 +5,7 @@ import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import posed, { PoseGroup } from 'react-pose'
+import PockerButton from './Button'
 
 /* animation state setting & init  */
 
@@ -33,6 +34,25 @@ const BgWrapper = styled.div`
   top: 5%;
   z-index: 1;
 `
+const TextBox = styled.div`
+  position: absolute;
+  left: 70%;
+  top: 50%;
+  color: #464545;
+  font-size: 2vw;
+  ${props => props.theme.fontfamilyLight};
+  font-weight: 100;
+`
+const TextBox2 = styled.div`
+  position: absolute;
+  left: 74.5%;
+  top: 70%;
+  color: #464545;
+  font-size: 2vw;
+  ${props => props.theme.fontfamilyLight};
+  font-weight: 100;
+  white-space: pre;
+`
 
 const ImgbasicStyle = {
   witdh: '100%',
@@ -52,7 +72,7 @@ class Ad extends React.Component {
       globalSceneOptions: { triggerHook: 'onCenter' },
     })
     new ScrollMagic.Scene({
-      triggerElement: '#sec',
+      triggerElement: this.adwrapper,
       duration: '1000',
       duration: 600,
     })
@@ -66,7 +86,7 @@ class Ad extends React.Component {
   }
   render() {
     return (
-      <AdWrpaaer id="sec5">
+      <AdWrpaaer id="sec5" innerRef={comp => (this.adwrapper = comp)}>
         <BigTitle>Vital UI Flow Poker Card 上架囉！！</BigTitle>
         <BgWrapper>
           <ImgBlur
@@ -75,6 +95,9 @@ class Ad extends React.Component {
             WrapperClassName=""
           />
         </BgWrapper>
+        <TextBox>比起文字</TextBox>
+        <TextBox2>圖像&nbsp;&nbsp;更有感覺</TextBox2>
+        <PockerButton btnText="立即購買" />
       </AdWrpaaer>
     )
   }
