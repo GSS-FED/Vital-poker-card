@@ -19,24 +19,21 @@ const theme = {
     fontWeight: 'bold',
   },
   fontfamilyLight: {
-    fontFamily: 'PingFangTC-Regular,Arial, sans-serif',
+    fontFamily: 'PingFangTC,Arial, sans-serif',
     fontWeight: 'lighter',
   },
 }
 
-class IndexPage extends React.Component {
-  state = {}
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <>
-          <Landing /> <WhatYouCanDo />
-          <WhatYouGet /> <FAQ /> <Ad />
-          <Footer />
-        </>
-      </ThemeProvider>
-    )
-  }
+const IndexPage = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <>
+        <Landing /> <WhatYouCanDo />
+        <WhatYouGet /> <FAQ /> <Ad />
+        <Footer />
+      </>
+    </ThemeProvider>
+  )
 }
 
 export default IndexPage
