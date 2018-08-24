@@ -23,6 +23,7 @@ export default function withDragDrop(Component) {
       rotate: 0,
       mouseCount: 0,
       isDraging: false,
+      zIndex: 2,
     }
 
     thatRef = createRef()
@@ -71,7 +72,7 @@ export default function withDragDrop(Component) {
         this.ref.refs.offsetLeft,
         this.ref.refs.offsetTop
       )
-      this.setState({ isDraging: true })
+      this.setState({ isDraging: true, zIndex: 100 })
       document.addEventListener('mousemove', this.handleMouse)
     }
     handleMouseUp = e => {
@@ -79,7 +80,7 @@ export default function withDragDrop(Component) {
       firstMousePosition.x = 0
       firstMousePosition.y = 0
       document.removeEventListener('mousemove', this.handleMouse)
-      this.setState({ isDraging: false })
+      this.setState({ isDraging: false, zIndex: 2 })
     }
 
     sigmoid = x => {
@@ -105,6 +106,7 @@ export default function withDragDrop(Component) {
       const mouseY = this.state.mouseY
       const rotate = this.state.rotate
       const mouseCount = this.state.mouseCount
+      const zIndex = this.state.zIndex
       const { ...rest } = this.props
       return (
         <Component
@@ -114,6 +116,7 @@ export default function withDragDrop(Component) {
           mouseX={mouseX}
           rotate={rotate}
           mouseCount={mouseCount}
+          zIndex={zIndex}
           {...rest}
         />
       )

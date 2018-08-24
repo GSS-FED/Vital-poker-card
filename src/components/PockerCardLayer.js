@@ -2,6 +2,7 @@ import React, { createRef, forwardRef } from 'react'
 import styled from 'styled-components'
 import ImgBlur from './QueryImgBlur'
 import DragHighOrder from '../component__highOrder/DragMove'
+import posed, { tween } from 'react-pose'
 
 const PockerCardDragPlayground = styled.div`
   height: 100%;
@@ -12,58 +13,97 @@ const PockerCardDragPlayground = styled.div`
   left: 0px;
   z-index: 2;
 `
-const CardStyle1 = {
+const PockerCardSelectPlayground = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: ${props =>
+    props.isCSMaskShow ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)'};
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: ${props => (props.isCSMaskShow ? '100' : '2')};
+  transition: 0.45s background-color ease-in-out;
+`
+const cardBase = {
   position: 'absolute',
+  zIndex: 2,
+}
+
+const cardSelectbasicStyle = {
+  width: '9%',
+  left: '15%',
+  top: '15%',
+  ...cardBase,
+}
+const cardNotSelectbasicStyle = {
+  width: '9%',
+  left: '0%',
+  top: '0%',
+  ...cardBase,
+  cursor: 'pointer',
+  // border: '3px solid pink',
+  // borderRadius: '10px',
+  transition: 'transform 0.45s cubic-bezier(.07,.08,.01,1) ',
+}
+
+const CardNotSelectbasicStyle = component => {
+  return styled(component)`
+    position: absolute;
+    width: 9%;
+    left: 0%;
+    top: 0%;
+    z-index: 2;
+    cursor: pointer;
+    /* border: 3px solid pink; */
+    /* border-radius: 10px; */
+  `
+}
+
+const CardStyle1 = {
   width: '9%',
   left: '35%',
   top: '55%',
-  zIndex: '2',
+  ...cardBase,
 }
 
 const CardStyle2 = {
-  position: 'absolute',
   width: '9%',
   left: '45%',
   top: '55%',
-  zIndex: '2',
+  ...cardBase,
 }
 
 const CardStyle3 = {
-  position: 'absolute',
   width: '9%',
   left: '55%',
   top: '55%',
-  zIndex: '2',
+  ...cardBase,
 }
 const CardStyle4 = {
-  position: 'absolute',
   width: '9%',
   left: '65%',
   top: '55%',
-  zIndex: '2',
+  ...cardBase,
 }
 
 const CardStyle5 = {
-  position: 'absolute',
   width: '9%',
   left: '45%',
   top: '75%',
-  zIndex: '2',
+  ...cardBase,
 }
 const CardStyle6 = {
-  position: 'absolute',
   width: '9%',
   left: '55%',
   top: '75%',
-  zIndex: '2',
+  ...cardBase,
 }
 
 const CardStyle7 = {
-  position: 'absolute',
   width: '9%',
   left: '25%',
   top: '75%',
-  zIndex: '2',
+  ...cardBase,
 }
 
 const BasicCardStyle = {
@@ -77,6 +117,18 @@ const Wrapper = {
   zIndex: '4',
 }
 
+const allPokerCardSerialNoArray = () => {
+  let resaultArray = []
+  for (let i = 1; i <= 13; i++) {
+    for (let j = 1; j <= 4; j++) {
+      let headString = 'poker0'
+      if (i >= 10) headString = 'poker'
+      resaultArray.push(headString + i + '0' + j)
+    }
+  }
+  return resaultArray
+}
+
 class PockerCardWrapper extends React.Component {
   render() {
     let box = {
@@ -86,7 +138,11 @@ class PockerCardWrapper extends React.Component {
       rotate(${this.props.rotate}deg)`,
       transformOrigin: '50% 50%',
     }
-    const StyleMerged = { ...this.props.customStyle, ...box }
+    const StyleMerged = {
+      ...this.props.customStyle,
+      ...box,
+      zIndex: this.props.zIndex,
+    }
     return (
       <div
         style={StyleMerged}
@@ -99,43 +155,190 @@ class PockerCardWrapper extends React.Component {
           customStyle={BasicCardStyle}
           WrapperClassName=""
         />
-        <ImgBlur
-          imgName={'pocker-shadow'}
-          customStyle={BasicCardStyle}
-          WrapperClassName="is-shadow"
-        />
+        {this.props.isShadow && (
+          <ImgBlur
+            imgName={'pocker-shadow'}
+            customStyle={BasicCardStyle}
+            WrapperClassName="is-shadow"
+          />
+        )}
       </div>
     )
   }
 }
 
-// const withData; // withDate(component)
-// const withUser;
 const DragCard = DragHighOrder(PockerCardWrapper)
-// compose(
-//   withDate,
-//   withUser,
-//   DragHighOrder,
-// )(Component)
-// DrageHighOrder(setting)(componet)
-// DrageHighOrder = (setting) => (component) => component
 
 class PockerCardLayer extends React.Component {
-  state = {}
+  state = {
+    isCSMaskShow: false,
+    cardSelected: ['poker0101', 'poker0102'],
+    cardNotSelected: allPokerCardSerialNoArray(),
+    wrapperWidth: 0,
+    wrapperHeight: 0,
+  }
   componentDidMount() {
+    console.log(allPokerCardSerialNoArray())
     console.log(this.ref, '/?????')
+    this.setState({
+      wrapperWidth: this.pokerCardWrapper.offsetWidth,
+      wrapperHeight: this.pokerCardWrapper.offsetHeight,
+    })
+    // this.state.cardSelected.map((d, index) => {
+    //   const cardNotSelectConfig = {
+    //     open: {
+    //       x:
+    //         this.state.wrapperWidth * 0.1 +
+    //         this.state.wrapperWidth * (((index % 8) * 10) / 100),
+    //       y:
+    //         this.state.wrapperHeight * 0.1 +
+    //         this.state.wrapperHeight * ((parseInt(index / 8) * 20) / 100),
+    //       transition: { duration: 1000 },
+    //     },
+    //     closed: {
+    //       x: this.state.wrapperWidth * 0,
+    //       y: this.state.wrapperHeight * 0.45,
+    //       transition: { duration: 1000 },
+    //     },
+    //   }
+    //   this.state.NotSelectedPoseConfig.push(cardNotSelectConfig)
+    // })
+  }
+
+  cardSelectClick = () => {
+    this.setState({
+      isCSMaskShow: !this.state.isCSMaskShow,
+      // wrapperWidth: this.pokerCardWrapper.offsetWidth,
+      // wrapperHeight: this.pokerCardWrapper.offsetHeight,
+    })
   }
   render() {
     return (
-      <PockerCardDragPlayground>
-        <DragCard imgName="poker0503" customStyle={CardStyle1} />
-        <DragCard imgName="poker0403" customStyle={CardStyle2} />
-        <DragCard imgName="poker0601" customStyle={CardStyle3} />
-        <DragCard imgName="poker0701" customStyle={CardStyle4} />
-        <DragCard imgName="poker0904" customStyle={CardStyle5} />
-        <DragCard imgName="poker1004" customStyle={CardStyle6} />
-        <DragCard imgName="poker0303" customStyle={CardStyle7} />
-      </PockerCardDragPlayground>
+      <>
+        <PockerCardDragPlayground
+          innerRef={ref => {
+            this.pokerCardWrapper = ref
+          }}
+        >
+          {/* {this.state.cardSelected.map((d, index) => {
+            const eachLeft = 15 + index * 2 + '%'
+
+            const eachCardStyle = { ...cardSelectbasicStyle, left: eachLeft }
+            console.log(eachCardStyle)
+            return (
+              <DragCard
+                imgName={d}
+                key={'pcokerCardSelected' + index}
+                customStyle={eachCardStyle}
+              />
+            )
+          })} */}
+          <DragCard
+            imgName="poker0503"
+            isShadow={true}
+            customStyle={CardStyle1}
+          />
+          <DragCard
+            imgName="poker0403"
+            isShadow={true}
+            customStyle={CardStyle2}
+          />
+          <DragCard
+            imgName="poker0601"
+            isShadow={true}
+            customStyle={CardStyle3}
+          />
+          <DragCard
+            imgName="poker0701"
+            isShadow={true}
+            customStyle={CardStyle4}
+          />
+          <DragCard
+            imgName="poker0904"
+            isShadow={true}
+            customStyle={CardStyle5}
+          />
+          <DragCard
+            imgName="poker1004"
+            isShadow={true}
+            customStyle={CardStyle6}
+          />
+          <DragCard
+            imgName="poker0303"
+            isShadow={true}
+            customStyle={CardStyle7}
+          />
+        </PockerCardDragPlayground>
+        <PockerCardSelectPlayground isCSMaskShow={this.state.isCSMaskShow}>
+          {this.state.cardNotSelected.map((d, index) => {
+            let transformStyle = {}
+            if (this.state.isCSMaskShow) {
+              transformStyle = {
+                transform: `
+              translateX(${this.state.wrapperWidth * 0.1 +
+                this.state.wrapperWidth * (((index % 8) * 10) / 100)}px) 
+              translateY(${this.state.wrapperHeight * 0.1 +
+                this.state.wrapperHeight *
+                  ((parseInt(index / 8) * 20) / 100)}px) `,
+              }
+            } else {
+              transformStyle = {
+                transform: `
+              translateX(${this.state.wrapperWidth * 0}px) 
+              translateY(${this.state.wrapperHeight * 0.45}px) `,
+              }
+            }
+            const eachCardStyle = {
+              ...cardNotSelectbasicStyle,
+              ...transformStyle,
+            }
+
+            const cardNotSelectConfig = {
+              open: {
+                x:
+                  this.state.wrapperWidth * 0.1 +
+                  this.state.wrapperWidth * (((index % 8) * 10) / 100),
+                y:
+                  this.state.wrapperHeight * 0.1 +
+                  this.state.wrapperHeight * ((parseInt(index / 8) * 20) / 100),
+                transition: { duration: 1000 },
+              },
+              closed: {
+                x: this.state.wrapperWidth * 0,
+                y: this.state.wrapperHeight * 0.45,
+                transition: { duration: 1000 },
+              },
+            }
+            console.log(cardNotSelectConfig)
+            // transition: { duration: 500 },
+            // transition: { duration: 200 },
+            const Box = CardNotSelectbasicStyle(posed.div(cardNotSelectConfig))
+            return (
+              <>
+                {/* <Box
+                  onClick={this.cardSelectClick}
+                  pose={this.state.isCSMaskShow ? 'open' : 'closed'}
+                  key={'pokerNotSelectedCard' + index}
+                >
+                  <ImgBlur
+                    imgName={d}
+                    customStyle={BasicCardStyle}
+                    WrapperClassName=""
+                  />
+                </Box> */}
+                <div onClick={this.cardSelectClick}>
+                  <ImgBlur
+                    imgName={d}
+                    key={'pokerNotSelectedCard' + index}
+                    customStyle={eachCardStyle}
+                    WrapperClassName=""
+                  />
+                </div>
+              </>
+            )
+          })}
+        </PockerCardSelectPlayground>
+      </>
     )
   }
 }

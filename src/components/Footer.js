@@ -4,7 +4,6 @@ import ImgBlur from './QueryImgBlur'
 import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
-import posed, { PoseGroup } from 'react-pose'
 
 /* animation state setting & init  */
 
