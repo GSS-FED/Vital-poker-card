@@ -11,18 +11,19 @@ const PockerCardDragPlayground = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 2;
+  z-index: ${props => (props.isCSMaskShow ? '500' : '2')};
 `
 const PockerCardSelectPlayground = styled.div`
-  height: 100%;
-  width: 100%;
+  height: ${props => (props.isCSMaskShow ? '100%' : '0px')};
+  width: ${props => (props.isCSMaskShow ? '100%' : '100%')};
   background-color: ${props =>
     props.isCSMaskShow ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)'};
-  position: absolute;
+  position: ${props => (props.isCSMaskShow ? 'fixed' : 'absolute')};
   top: 0px;
   left: 0px;
-  z-index: ${props => (props.isCSMaskShow ? '100' : '2')};
+  z-index: ${props => (props.isCSMaskShow ? '400' : '2')};
   transition: 0.45s background-color ease-in-out;
+  overflow: ${props => (props.isCSMaskShow ? 'auto' : 'visible')};
 `
 const cardBase = {
   position: 'absolute',
@@ -184,32 +185,13 @@ class PockerCardLayer extends React.Component {
       wrapperWidth: this.pokerCardWrapper.offsetWidth,
       wrapperHeight: this.pokerCardWrapper.offsetHeight,
     })
-    // this.state.cardSelected.map((d, index) => {
-    //   const cardNotSelectConfig = {
-    //     open: {
-    //       x:
-    //         this.state.wrapperWidth * 0.1 +
-    //         this.state.wrapperWidth * (((index % 8) * 10) / 100),
-    //       y:
-    //         this.state.wrapperHeight * 0.1 +
-    //         this.state.wrapperHeight * ((parseInt(index / 8) * 20) / 100),
-    //       transition: { duration: 1000 },
-    //     },
-    //     closed: {
-    //       x: this.state.wrapperWidth * 0,
-    //       y: this.state.wrapperHeight * 0.45,
-    //       transition: { duration: 1000 },
-    //     },
-    //   }
-    //   this.state.NotSelectedPoseConfig.push(cardNotSelectConfig)
-    // })
   }
 
   cardSelectClick = () => {
     this.setState({
       isCSMaskShow: !this.state.isCSMaskShow,
-      // wrapperWidth: this.pokerCardWrapper.offsetWidth,
-      // wrapperHeight: this.pokerCardWrapper.offsetHeight,
+      wrapperWidth: this.pokerCardWrapper.offsetWidth,
+      wrapperHeight: this.pokerCardWrapper.offsetHeight,
     })
   }
   render() {
@@ -219,8 +201,81 @@ class PockerCardLayer extends React.Component {
           innerRef={ref => {
             this.pokerCardWrapper = ref
           }}
+          isCSMaskShow={this.state.isCSMaskShow}
         >
-          {/* {this.state.cardSelected.map((d, index) => {
+          <PockerCardSelectPlayground isCSMaskShow={this.state.isCSMaskShow}>
+            {this.state.cardNotSelected.map((d, index) => {
+              let transformStyle = {}
+              if (this.state.isCSMaskShow) {
+                transformStyle = {
+                  transform: `
+              translateX(${this.state.wrapperWidth * 0.1 +
+                this.state.wrapperWidth * (((index % 8) * 10) / 100)}px) 
+              translateY(${this.state.wrapperHeight * 0.1 +
+                this.state.wrapperHeight *
+                  ((parseInt(index / 8) * 20) / 100)}px) `,
+                }
+              } else {
+                transformStyle = {
+                  transform: `
+              translateX(${this.state.wrapperWidth * 0}px) 
+              translateY(${this.state.wrapperHeight * 0.45}px) `,
+                }
+              }
+              const eachCardStyle = {
+                ...cardNotSelectbasicStyle,
+                ...transformStyle,
+              }
+
+              // const cardNotSelectConfig = {
+              //   open: {
+              //     x:
+              //       this.state.wrapperWidth * 0.1 +
+              //       this.state.wrapperWidth * (((index % 8) * 10) / 100),
+              //     y:
+              //       this.state.wrapperHeight * 0.1 +
+              //       this.state.wrapperHeight *
+              //         ((parseInt(index / 8) * 20) / 100),
+              //     transition: { duration: 1000 },
+              //     delay: 500,
+              //   },
+              //   closed: {
+              //     x: this.state.wrapperWidth * 0,
+              //     y: this.state.wrapperHeight * 0.45,
+              //     transition: { duration: 1000 },
+              //     delay: 500,
+              //   },
+              // }
+              // console.log(cardNotSelectConfig)
+              // const Box = CardNotSelectbasicStyle(
+              //   posed.div(cardNotSelectConfig)
+              // )
+              return (
+                <>
+                  {/* <Box
+                  onClick={this.cardSelectClick}
+                  pose={this.state.isCSMaskShow ? 'open' : 'closed'}
+                  key={'pokerNotSelectedCard' + index}
+                >
+                  <ImgBlur
+                    imgName={d}
+                    customStyle={BasicCardStyle}
+                    WrapperClassName=""
+                  />
+                </Box> */}
+                  <div onClick={this.cardSelectClick}>
+                    <ImgBlur
+                      imgName={d}
+                      key={'pokerNotSelectedCard' + index}
+                      customStyle={eachCardStyle}
+                      WrapperClassName=""
+                    />
+                  </div>
+                </>
+              )
+            })}
+          </PockerCardSelectPlayground>
+          {/* {this.state.cardNotSelected.map((d, index) => {
             const eachLeft = 15 + index * 2 + '%'
 
             const eachCardStyle = { ...cardSelectbasicStyle, left: eachLeft }
@@ -269,75 +324,6 @@ class PockerCardLayer extends React.Component {
             customStyle={CardStyle7}
           />
         </PockerCardDragPlayground>
-        <PockerCardSelectPlayground isCSMaskShow={this.state.isCSMaskShow}>
-          {this.state.cardNotSelected.map((d, index) => {
-            let transformStyle = {}
-            if (this.state.isCSMaskShow) {
-              transformStyle = {
-                transform: `
-              translateX(${this.state.wrapperWidth * 0.1 +
-                this.state.wrapperWidth * (((index % 8) * 10) / 100)}px) 
-              translateY(${this.state.wrapperHeight * 0.1 +
-                this.state.wrapperHeight *
-                  ((parseInt(index / 8) * 20) / 100)}px) `,
-              }
-            } else {
-              transformStyle = {
-                transform: `
-              translateX(${this.state.wrapperWidth * 0}px) 
-              translateY(${this.state.wrapperHeight * 0.45}px) `,
-              }
-            }
-            const eachCardStyle = {
-              ...cardNotSelectbasicStyle,
-              ...transformStyle,
-            }
-
-            const cardNotSelectConfig = {
-              open: {
-                x:
-                  this.state.wrapperWidth * 0.1 +
-                  this.state.wrapperWidth * (((index % 8) * 10) / 100),
-                y:
-                  this.state.wrapperHeight * 0.1 +
-                  this.state.wrapperHeight * ((parseInt(index / 8) * 20) / 100),
-                transition: { duration: 1000 },
-              },
-              closed: {
-                x: this.state.wrapperWidth * 0,
-                y: this.state.wrapperHeight * 0.45,
-                transition: { duration: 1000 },
-              },
-            }
-            console.log(cardNotSelectConfig)
-            // transition: { duration: 500 },
-            // transition: { duration: 200 },
-            const Box = CardNotSelectbasicStyle(posed.div(cardNotSelectConfig))
-            return (
-              <>
-                {/* <Box
-                  onClick={this.cardSelectClick}
-                  pose={this.state.isCSMaskShow ? 'open' : 'closed'}
-                  key={'pokerNotSelectedCard' + index}
-                >
-                  <ImgBlur
-                    imgName={d}
-                    customStyle={BasicCardStyle}
-                    WrapperClassName=""
-                  />
-                </Box> */}
-                <div onClick={this.cardSelectClick}>
-                  <ImgBlur
-                    imgName={d}
-                    key={'pokerNotSelectedCard' + index}
-                    customStyle={eachCardStyle}
-                    WrapperClassName=""
-                  />
-                </div>
-              </>
-            )
-          })}
-        </PockerCardSelectPlayground>
       </>
     )
   }
