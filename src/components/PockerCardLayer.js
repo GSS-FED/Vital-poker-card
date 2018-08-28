@@ -208,25 +208,25 @@ class PockerCardLayer extends React.Component {
     })
   }
   cardSelectClick = (CardSerialNo, e) => {
-    // console.log(CardSerialNo, e)
-    // if (this.state.isCSMaskShow) {
-    //   e.stopPropagation()
-    //   const targetIndex = this.state.cardSelected.findIndex(d => {
-    //     return d === CardSerialNo
-    //   })
-    //   console.log(targetIndex)
-    //   if (targetIndex === -1) {
-    //     this.setState({
-    //       cardSelected: this.state.cardSelected.push(CardSerialNo),
-    //     })
-    //   } else {
-    //     this.setState({
-    //       cardSelected: this.state.cardSelected.splice(targetIndex, 1),
-    //     })
-    //   }
-    //   console.log(this.state.cardSelected, '!!!!!!!!!!!!')
-    // } else {
-    // }
+    console.log(CardSerialNo, e)
+    if (this.state.isCSMaskShow) {
+      e.stopPropagation()
+      const targetIndex = this.state.cardSelected.findIndex(d => {
+        return d === CardSerialNo
+      })
+      console.log(targetIndex)
+      if (targetIndex === -1) {
+        this.setState({
+          cardSelected: [...this.state.cardSelected, ...CardSerialNo],
+        })
+      } else {
+        const mutatedstate = this.state.cardSelected
+        mutatedstate.splice(targetIndex, 1)
+        this.setState({ cardSelected: mutatedstate })
+      }
+      console.log(this.state.cardSelected, '!!!!!!!!!!!!')
+    } else {
+    }
   }
   render() {
     return (
