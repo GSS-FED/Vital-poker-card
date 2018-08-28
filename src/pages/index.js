@@ -20,7 +20,7 @@ const theme = {
   },
   fontfamilyLight: {
     fontFamily: 'PingFangTC,Arial, sans-serif',
-    fontWeight: 'lighter',
+    fontWeight: '100',
   },
 }
 
