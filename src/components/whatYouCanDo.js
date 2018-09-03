@@ -8,6 +8,10 @@ import posed, { PoseGroup } from 'react-pose'
 
 const Box = posed.div({
   draggable: true,
+  hoverable: true,
+  init: { scale: 1 },
+  drag: { scale: 1.03 },
+  hover: { scale: 1.05 },
   dragEnd: { transition: { type: 'spring', stiffness: 500 } },
 })
 
@@ -52,6 +56,21 @@ const CircleWrapper = styled(Box)`
   &.position3 {
     top: 32.5%;
     left: 76%;
+  }
+  &.is-noborder {
+    z-index: 1;
+    border-color: rgba(53, 57, 66, 0);
+    box-shadow: none;
+    pointer-events: none;
+    div {
+      opacity: 0;
+      transition: opacity 0.35s ease-in-out 0.1s;
+    }
+    &.is-alien-show {
+      div {
+        opacity: 1;
+      }
+    }
   }
   &.is-show {
     border-color: rgba(53, 57, 66, 1);
@@ -179,6 +198,9 @@ const dragbox = {
 }
 
 class whatYouCanDo extends React.Component {
+  state = {
+    isAlienShow: false,
+  }
   componentDidMount() {
     console.log('componentDidMount')
     var controller = new ScrollMagic.Controller({
@@ -198,6 +220,13 @@ class whatYouCanDo extends React.Component {
       //.addIndicators() // add indicators (requires plugin)
       .addTo(controller)
   }
+
+  onDragStart = () => {
+    this.setState({ isAlienShow: true })
+  }
+  onDragEnd = () => {
+    this.setState({ isAlienShow: false })
+  }
   render() {
     return (
       <WhatYouCanDoWrapper id="sec2">
@@ -211,24 +240,78 @@ class whatYouCanDo extends React.Component {
           />
         </BgWrapper>{' '}
         <BgWrapper className="layer2">
-          <CircleWrapper id="circlewrapper1">
+          <CircleWrapper
+            id="circlewrapper1"
+            onDragStart={this.onDragStart}
+            onDragEnd={this.onDragEnd}
+          >
             <ImgBlur
               imgName="circle-content1"
               customStyle={CCStyle1}
               WrapperClassName="is-passthrough"
             />
           </CircleWrapper>
-          <CircleWrapper className="position2" id="circlewrapper2">
+          <CircleWrapper
+            className={
+              this.state.isAlienShow
+                ? 'is-noborder is-alien-show'
+                : 'is-noborder'
+            }
+          >
+            <ImgBlur
+              imgName="alien03"
+              customStyle={CCStyle2}
+              WrapperClassName="is-passthrough"
+            />
+          </CircleWrapper>
+          <CircleWrapper
+            className="position2"
+            id="circlewrapper2"
+            onDragStart={this.onDragStart}
+            onDragEnd={this.onDragEnd}
+          >
             <ImgBlur
               imgName="circle-content2"
               customStyle={CCStyle2}
               WrapperClassName="is-passthrough"
             />
           </CircleWrapper>
-          <CircleWrapper className="position3" id="circlewrapper3">
+          <CircleWrapper
+            className={
+              this.state.isAlienShow
+                ? 'position2 is-noborder is-alien-show'
+                : 'position2 is-noborder'
+            }
+          >
+            <ImgBlur
+              imgName="alien01"
+              customStyle={CCStyle2}
+              WrapperClassName="is-passthrough"
+            />
+          </CircleWrapper>
+
+          <CircleWrapper
+            className="position3"
+            id="circlewrapper3"
+            onDragStart={this.onDragStart}
+            onDragEnd={this.onDragEnd}
+          >
             <ImgBlur
               imgName="circle-content3"
               customStyle={CCStyle3}
+              WrapperClassName="is-passthrough"
+            />
+          </CircleWrapper>
+          <CircleWrapper
+            className={
+              this.state.isAlienShow
+                ? 'position3 is-noborder is-alien-show'
+                : 'position3 is-noborder'
+            }
+          >
+            <ImgBlur
+              imgName="alien02"
+              customStyle={CCStyle2}
               WrapperClassName="is-passthrough"
             />
           </CircleWrapper>
