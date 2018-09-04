@@ -7,7 +7,7 @@ import posed from 'react-pose'
 import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
-
+import html2canvas from 'html2canvas'
 /*  posed component Setting  */
 
 const textConfig = {
@@ -54,7 +54,7 @@ const LandingWrapper = styled.div`
   min-height: 100vh;
   width: 100vw;
   background-color: white;
-  z-index: 1;
+  z-index: 5;
 `
 const LandingStyle = {
   width: '100%',
@@ -182,6 +182,11 @@ const backgroungSetting = css`
 
 class Landing extends React.Component {
   state = { isShow: false }
+  getScreenShot = () => {
+    html2canvas(document.body).then(function(canvas) {
+      document.body.appendChild(canvas)
+    })
+  }
   componentDidMount() {
     let controller = new ScrollMagic.Controller({
       globalSceneOptions: { triggerHook: 'onCenter' },
@@ -213,7 +218,10 @@ class Landing extends React.Component {
         <PerfectCommunicationText pose={this.state.isShow ? 'open' : 'closed'}>
           打造完美溝通體驗
         </PerfectCommunicationText>
-        <BtnWrapper pose={this.state.isShow ? 'open' : 'closed'}>
+        <BtnWrapper
+          onClick={this.getScreenShot}
+          pose={this.state.isShow ? 'open' : 'closed'}
+        >
           {' '}
           <Button
             btnText="立即購買"

@@ -42,9 +42,11 @@ const cardNotSelectbasicStyle = {
   top: '0%',
   ...cardBase,
   cursor: 'pointer',
-  // border: '3px solid pink',
-  // borderRadius: '10px',
-  transition: 'transform 0.45s cubic-bezier(.07,.08,.01,1) ',
+  border: '5px solid transparent',
+  backgroundColor: 'transparent',
+  borderRadius: '13px',
+  transition:
+    'transform 0.45s cubic-bezier(.07,.08,.01,1),  border 0.25s ease-in-out,background-color 0.25s ease-in-out',
 }
 
 const CardNotSelectbasicStyle = component => {
@@ -182,7 +184,7 @@ class PockerCardLayer extends React.Component {
       'poker0904',
       'poker1004',
     ],
-    cardSelected: ['poker0303'],
+    cardSelected: [],
     cardNotSelected: allPokerCardSerialNoArray(),
     wrapperWidth: 0,
     wrapperHeight: 0,
@@ -247,18 +249,21 @@ class PockerCardLayer extends React.Component {
               if (this.state.isCSMaskShow) {
                 transformStyle = {
                   transform: `
-                    translateX(${this.state.wrapperWidth * 0.1 +
-                      this.state.wrapperWidth * (((index % 8) * 10) / 100)}px) 
+                    translateX(${this.state.wrapperWidth * 0.06 +
+                      this.state.wrapperWidth * (((index % 8) * 11) / 100)}px) 
                     translateY(${this.state.wrapperHeight * 0.1 +
                       this.state.wrapperHeight *
-                        ((parseInt(index / 8) * 20) / 100)}px) `,
+                        ((parseInt(index / 8) * 22) / 100)}px) `,
                 }
                 if (
                   this.state.cardSelected.findIndex(selectedItem => {
                     return selectedItem === d
                   }) !== -1
                 )
-                  selectedStyle = { border: '2px solid #81E0FD' }
+                  selectedStyle = {
+                    border: '5px solid #81E0FD',
+                    backgroundColor: '#81E0FD',
+                  }
               } else {
                 transformStyle = {
                   transform: `
