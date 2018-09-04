@@ -160,7 +160,7 @@ class FAQ extends React.Component {
         this.handleMenuOpenClick(true)
       })
       .on('leave', () => {
-        this.handleMenuOpenClick(false)
+        //this.handleMenuOpenClick(false)
       })
       .addTo(controller)
   }

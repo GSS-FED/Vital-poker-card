@@ -152,7 +152,7 @@ class WhatYouGet extends React.Component {
         console.log('#sec3 enter', this.state.isNumberRun)
       })
       .on('leave', () => {
-        this.setState({ isNumberRun: false })
+        //this.setState({ isNumberRun: false })
         console.log('#sec3 enter', this.state.isNumberRun)
       })
       .addTo(controller)
