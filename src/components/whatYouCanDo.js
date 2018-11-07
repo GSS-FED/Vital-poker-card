@@ -5,6 +5,7 @@ import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import posed, { PoseGroup } from 'react-pose'
+import { desktopStyle } from '../layout'
 
 const Box = posed.div({
   draggable: true,
@@ -25,7 +26,7 @@ const Fox = posed.div({
 
 const WhatYouCanDoWrapper = styled.div`
   position: relative;
-  height: 100vh;
+  height: 83.43vw;
   width: 100vw;
   background-color: white;
   z-index: 2;
@@ -33,11 +34,8 @@ const WhatYouCanDoWrapper = styled.div`
 `
 const CircleWrapper = styled(Box)`
   position: absolute;
-  top: 10%;
-  left: 45%;
+  ${desktopStyle};
   background-color: transparent;
-  width: 20vw;
-  height: 20vw;
   z-index: 2;
   border-radius: 50%;
   box-shadow: 0 16px 29px -13px rgba(0, 0, 0, 0);
@@ -49,13 +47,6 @@ const CircleWrapper = styled(Box)`
   div {
     opacity: 0;
     transition: opacity 1.35s ease-in-out 0.5s;
-  }
-  &.position2 {
-    top: 55%;
-  }
-  &.position3 {
-    top: 32.5%;
-    left: 76%;
   }
   &.is-noborder {
     z-index: 1;
@@ -84,11 +75,8 @@ const CircleWrapper = styled(Box)`
 
 const TriangleWrapper = styled(Box)`
   position: absolute;
-  top: 75%;
-  left: 79%;
+  ${desktopStyle};
   background-color: transparent;
-  width: 9vw;
-  height: 9vw;
   opacity: 0.2;
   transition: opacity 0.35s ease-in-out;
   .is-passthrough {
@@ -139,8 +127,8 @@ const YouGet = styled.span`
 
 const BgWrapper = styled.div`
   position: absolute;
-  left: 10%;
-  width: 70%;
+  left: 0%;
+  width: 100%;
   height: 100%;
   opacity: 0;
   transition: opacity 0.8s ease-out 1.5s,
@@ -211,7 +199,7 @@ class whatYouCanDo extends React.Component {
       triggerElement: '#sec2',
       duration: '1000',
       offset: 500,
-      duration: 600,
+      duration: 700,
     })
       .setClassToggle(
         '#card-wrapper,#circlewrapper1,#circlewrapper2,#circlewrapper3,#sec2_what,#sec2_YCD,#trianglewrapper',
@@ -244,6 +232,11 @@ class whatYouCanDo extends React.Component {
             id="circlewrapper1"
             onDragStart={this.onDragStart}
             onDragEnd={this.onDragEnd}
+            t={106}
+            l={452}
+            w={370}
+            h={370}
+            wh={1068}
           >
             <ImgBlur
               imgName="circle-content1"
@@ -257,6 +250,11 @@ class whatYouCanDo extends React.Component {
                 ? 'is-noborder is-alien-show'
                 : 'is-noborder'
             }
+            t={106}
+            l={452}
+            w={370}
+            h={370}
+            wh={1068}
           >
             <ImgBlur
               imgName="alien03"
@@ -269,6 +267,11 @@ class whatYouCanDo extends React.Component {
             id="circlewrapper2"
             onDragStart={this.onDragStart}
             onDragEnd={this.onDragEnd}
+            t={544}
+            l={452}
+            w={370}
+            h={370}
+            wh={1068}
           >
             <ImgBlur
               imgName="circle-content2"
@@ -282,6 +285,11 @@ class whatYouCanDo extends React.Component {
                 ? 'position2 is-noborder is-alien-show'
                 : 'position2 is-noborder'
             }
+            t={544}
+            l={452}
+            w={370}
+            h={370}
+            wh={1068}
           >
             <ImgBlur
               imgName="alien01"
@@ -295,6 +303,11 @@ class whatYouCanDo extends React.Component {
             id="circlewrapper3"
             onDragStart={this.onDragStart}
             onDragEnd={this.onDragEnd}
+            t={336}
+            l={836}
+            w={370}
+            h={370}
+            wh={1068}
           >
             <ImgBlur
               imgName="circle-content3"
@@ -308,6 +321,11 @@ class whatYouCanDo extends React.Component {
                 ? 'position3 is-noborder is-alien-show'
                 : 'position3 is-noborder'
             }
+            t={336}
+            l={836}
+            w={370}
+            h={370}
+            wh={1068}
           >
             <ImgBlur
               imgName="alien02"
@@ -315,7 +333,14 @@ class whatYouCanDo extends React.Component {
               WrapperClassName="is-passthrough"
             />
           </CircleWrapper>
-          <TriangleWrapper id="trianglewrapper">
+          <TriangleWrapper
+            id="trianglewrapper"
+            t={779}
+            l={870}
+            w={161}
+            h={92}
+            wh={1068}
+          >
             <ImgBlur
               imgName="triangleborder"
               customStyle={TriangleStyle}
