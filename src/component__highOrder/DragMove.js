@@ -33,12 +33,16 @@ export default function withDragDrop(Component) {
       console.log(this.ref, Component, 'yoyoyoyoyoyoyo', this.ref.refs)
       this.ref.refs.addEventListener('mousedown', this.handleMouseDown)
       this.ref.refs.addEventListener('mouseup', this.handleMouseUp)
+      this.ref.refs.addEventListener('touchstart', this.handleMouseDown)
+      this.ref.refs.addEventListener('touchend', this.handleMouseUp)
       this.update()
     }
 
     componentWillUnmount() {
       this.ref.refs.removeEventListener('mousedown', this.handleMouseDown)
       this.ref.refs.removeEventListener('mouseup', this.handleMouseUp)
+      this.ref.refs.removeEventListener('touchstart', this.handleMouseDown)
+      this.ref.refs.removeEventListener('touchend', this.handleMouseUp)
     }
 
     handleClick = e => {
@@ -73,13 +77,20 @@ export default function withDragDrop(Component) {
         this.ref.refs.offsetTop
       )
       this.setState({ isDraging: true, zIndex: 100 })
-      document.addEventListener('mousemove', this.handleMouse)
+      console.log(e)
+      if (e.type === 'mousedown')
+        document.addEventListener('mousemove', this.handleMouse)
+      else if (e.type === 'touchstart')
+        document.addEventListener('touchmove', this.handleMouse)
     }
     handleMouseUp = e => {
       console.log('card mouseup!')
       firstMousePosition.x = 0
       firstMousePosition.y = 0
-      document.removeEventListener('mousemove', this.handleMouse)
+      if (e.type === 'mousedown')
+        document.removeEventListener('mousemove', this.handleMouse)
+      else if (e.type === 'touchend')
+        document.removeEventListener('touchmove', this.handleMouse)
       this.setState({ isDraging: false, zIndex: 2 })
     }
 
