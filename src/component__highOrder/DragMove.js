@@ -51,25 +51,58 @@ export default function withDragDrop(Component) {
       this.setState({ mouseCount: finalcount })
     }
     handleMouse = e => {
-      // console.log(e.clientX, e.clientY)
-      MousePosition.x = e.clientX
-      MousePosition.y = e.clientY
-      this.setState({
-        mouseX: e.clientX - this.ref.refs.offsetLeft - firstMousePosition.x,
-        mouseY: e.clientY - this.ref.refs.offsetTop - firstMousePosition.y,
-      })
+      console.log('move', e, e.clientX, e.clientY)
+      if (e.type === 'touchmove') {
+        MousePosition.x = e.changedTouches[0].clientX
+        MousePosition.y = e.changedTouches[0].clientY
+        this.setState({
+          mouseX:
+            e.changedTouches[0].clientX -
+            this.ref.refs.offsetLeft -
+            firstMousePosition.x,
+          mouseY:
+            e.changedTouches[0].clientY -
+            this.ref.refs.offsetTop -
+            firstMousePosition.y,
+        })
+      } else {
+        MousePosition.x = e.clientX
+        MousePosition.y = e.clientY
+        this.setState({
+          mouseX: e.clientX - this.ref.refs.offsetLeft - firstMousePosition.x,
+          mouseY: e.clientY - this.ref.refs.offsetTop - firstMousePosition.y,
+        })
+      }
     }
     handleMouseDown = e => {
       e.preventDefault()
-      console.log('card mousedown!')
+      console.log('card' + e.type)
       if (this.state.mouseX === undefined) {
-        firstMousePosition.x = e.clientX - this.ref.refs.offsetLeft
-        firstMousePosition.y = e.clientY - this.ref.refs.offsetTop
+        if (e.type === 'touchstart') {
+          firstMousePosition.x =
+            e.changedTouches[0].clientX - this.ref.refs.offsetLeft
+          firstMousePosition.y =
+            e.changedTouches[0].clientY - this.ref.refs.offsetTop
+        } else {
+          firstMousePosition.x = e.clientX - this.ref.refs.offsetLeft
+          firstMousePosition.y = e.clientY - this.ref.refs.offsetTop
+        }
       } else {
-        firstMousePosition.x =
-          e.clientX - this.ref.refs.offsetLeft - this.state.mouseX
-        firstMousePosition.y =
-          e.clientY - this.ref.refs.offsetTop - this.state.mouseY
+        if (e.type === 'touchstart') {
+          firstMousePosition.x =
+            e.changedTouches[0].clientX -
+            this.ref.refs.offsetLeft -
+            this.state.mouseX
+          firstMousePosition.y =
+            e.changedTouches[0].clientY -
+            this.ref.refs.offsetTop -
+            this.state.mouseY
+        } else {
+          firstMousePosition.x =
+            e.clientX - this.ref.refs.offsetLeft - this.state.mouseX
+          firstMousePosition.y =
+            e.clientY - this.ref.refs.offsetTop - this.state.mouseY
+        }
       }
       console.log(
         firstMousePosition,
@@ -83,11 +116,12 @@ export default function withDragDrop(Component) {
       else if (e.type === 'touchstart')
         document.addEventListener('touchmove', this.handleMouse)
     }
+
     handleMouseUp = e => {
-      console.log('card mouseup!')
+      console.log('card' + e.type)
       firstMousePosition.x = 0
       firstMousePosition.y = 0
-      if (e.type === 'mousedown')
+      if (e.type === 'mouseup')
         document.removeEventListener('mousemove', this.handleMouse)
       else if (e.type === 'touchend')
         document.removeEventListener('touchmove', this.handleMouse)
