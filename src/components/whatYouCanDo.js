@@ -199,7 +199,8 @@ class whatYouCanDo extends React.Component {
       triggerElement: '#sec2',
       duration: '1000',
       offset: 500,
-      duration: 700,
+      duration: 7000,
+      reverse: false,
     })
       .setClassToggle(
         '#card-wrapper,#circlewrapper1,#circlewrapper2,#circlewrapper3,#sec2_what,#sec2_YCD,#trianglewrapper',

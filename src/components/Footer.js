@@ -9,7 +9,7 @@ import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/de
 
 const FooterWrapper = styled.div`
   position: relative;
-  height: 20vh;
+  height: 13.51vw;
   width: 100vw;
   text-align: center;
   background-color: #464545;

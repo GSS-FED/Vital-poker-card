@@ -11,7 +11,7 @@ import PockerButton from './Button'
 
 const AdWrpaaer = styled.div`
   position: relative;
-  height: 65vh;
+  height: 44.14vw;
   width: 100vw;
   text-align: center;
   overflow: hidden;

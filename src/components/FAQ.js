@@ -44,7 +44,7 @@ const FAQWrapper = styled.div`
   position: relative;
 
   margin-top: 10%;
-  height: 100vh;
+  height: 75.78vw;
   width: 100vw;
   background-image: linear-gradient(225deg, #f3f3f3 0%, #e7e7e7 100%);
   text-align: center;
@@ -155,6 +155,7 @@ class FAQ extends React.Component {
       triggerElement: '#sec4',
       duration: '1000',
       duration: 600,
+      reverse: false,
     })
       .on('enter', () => {
         this.handleMenuOpenClick(true)

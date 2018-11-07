@@ -133,6 +133,7 @@ const ShadowStyle = {
 class WhatYouGet extends React.Component {
   state = {
     isNumberRun: false,
+    isShow: false,
   }
   componentDidMount() {
     var controller = new ScrollMagic.Controller({
@@ -141,26 +142,26 @@ class WhatYouGet extends React.Component {
 
     new ScrollMagic.Scene({
       triggerElement: '#sec3',
-      duration: '1000',
       offset: 300,
       duration: 600,
     })
-      .setClassToggle('#sec3-left,#sec3-right,#what,#youget', 'is-show')
-      //.addIndicators() // add indicators (requires plugin)
       .on('enter', () => {
-        this.setState({ isNumberRun: true })
-        console.log('#sec3 enter', this.state.isNumberRun)
-      })
-      .on('leave', () => {
-        //this.setState({ isNumberRun: false })
+        this.setState({ isNumberRun: true, isShow: true })
         console.log('#sec3 enter', this.state.isNumberRun)
       })
       .addTo(controller)
   }
+  classNameIsShow = isShow => {
+    if (isShow) return 'is-show'
+    else return ''
+  }
   render() {
     return (
       <WhatYouGetWrapper id="sec3">
-        <LeftBlock id="sec3-left">
+        <LeftBlock
+          id="sec3-left"
+          className={this.state.isShow ? 'is-show' : ''}
+        >
           <NumberWrapper>
             {this.state.isNumberRun && (
               <>
@@ -185,8 +186,12 @@ class WhatYouGet extends React.Component {
               </>
             )}
           </NumberWrapper>
-          <What id="what">WHAT</What>
-          <YouGet id="youget">YOU GET</YouGet>
+          <What id="what" className={this.state.isShow ? 'is-show' : ''}>
+            WHAT
+          </What>
+          <YouGet id="youget" className={this.state.isShow ? 'is-show' : ''}>
+            YOU GET
+          </YouGet>
 
           <ImgBlur
             imgName="layer-shadow"
@@ -194,7 +199,10 @@ class WhatYouGet extends React.Component {
             WrapperClassName="is-passthrough"
           />
         </LeftBlock>
-        <RightBlock id="sec3-right">
+        <RightBlock
+          id="sec3-right"
+          className={this.state.isShow ? 'is-show' : ''}
+        >
           <ImgBlur
             imgName="right-block"
             customStyle={BgStyle}
