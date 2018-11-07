@@ -7,7 +7,7 @@ import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/de
 import CountUp from 'react-countup'
 
 const WhatYouGetWrapper = styled.div`
-  height: 100vh;
+  height: 56.79vw;
   width: 100vw;
   position: relative;
   overflow: hidden;
