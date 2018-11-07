@@ -51,7 +51,7 @@ const posed_btn = posed.div(buttonConfig)
 
 const LandingWrapper = styled.div`
   position: relative;
-  min-height: 100vh;
+  height: 72.8124vw;
   width: 100vw;
   background-color: white;
   z-index: 5;
@@ -183,9 +183,12 @@ const backgroungSetting = css`
 class Landing extends React.Component {
   state = { isShow: false }
   getScreenShot = () => {
-    html2canvas(document.body).then(function(canvas) {
-      document.body.appendChild(canvas)
-    })
+    this.setState({ isShow: false })
+    setTimeout(() => {
+      html2canvas(this.landingWrapperDom).then(function(canvas) {
+        document.body.appendChild(canvas)
+      })
+    }, 700)
   }
   componentDidMount() {
     let controller = new ScrollMagic.Controller({
