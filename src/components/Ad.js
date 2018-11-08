@@ -91,6 +91,12 @@ class Ad extends React.Component {
       })
       .addTo(controller)
   }
+  goShoping = () => {
+    window.open(
+      'https://shopee.tw/desbear/1322856210?version=7050b5b8ee13329ad770f300e1f9d4ea',
+      '_blank'
+    )
+  }
   render() {
     return (
       <AdWrpaaer id="sec5" innerRef={comp => (this.adwrapper = comp)}>
@@ -107,7 +113,15 @@ class Ad extends React.Component {
           <BoldText>圖像</BoldText>
           &nbsp;&nbsp;更有感覺
         </TextBox2>
-        <BtnWrapper t={247} l={540} h={57} w={214} wh={529} fs={24}>
+        <BtnWrapper
+          t={247}
+          l={540}
+          h={57}
+          w={214}
+          wh={529}
+          fs={24}
+          onClick={this.goShoping}
+        >
           <PockerButton btnText="立即購買" />
         </BtnWrapper>
       </AdWrpaaer>
