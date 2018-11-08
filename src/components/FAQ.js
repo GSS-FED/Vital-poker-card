@@ -103,6 +103,9 @@ const QusetionItemsWrapper = styled(Item)`
   min-height: 100px;
   width: 100%;
   margin-bottom: 2%;
+  padding: 18px 23px 32px 23px;
+  box-sizing: border-box;
+  text-align: left;
 `
 const CommunityBtnWrapper = styled(PosedComBtn)`
   position: absolute;
@@ -194,11 +197,26 @@ class FAQ extends React.Component {
           />
         </BookWrapeer>
         <QusetionOutterWrapper pose={this.state.isOpen ? 'open' : 'closed'}>
-          <QusetionItemsWrapper />
-          <QusetionItemsWrapper />
-          <QusetionItemsWrapper />
-          <QusetionItemsWrapper />
-          <QusetionItemsWrapper />
+          <QusetionItemsWrapper>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.
+          </QusetionItemsWrapper>
+          <QusetionItemsWrapper>
+            There are many variations of passages of Lorem Ipsum available, but
+            the majority have suffered alteration in some form.
+          </QusetionItemsWrapper>
+          <QusetionItemsWrapper>
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
+            below for those interested.
+          </QusetionItemsWrapper>
+          <QusetionItemsWrapper>
+            All the Lorem Ipsum generators on the Internet tend to repeat
+            predefined chunks as necessary, making this the first true.
+          </QusetionItemsWrapper>
+          <QusetionItemsWrapper>
+            All the Lorem Ipsum generators on the Internet tend to repeat
+            predefined chunks as necessary, making this the first true.
+          </QusetionItemsWrapper>
         </QusetionOutterWrapper>
       </FAQWrapper>
     )

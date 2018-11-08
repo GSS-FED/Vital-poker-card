@@ -19,15 +19,15 @@ const ButtonWrapper = styled(posed_button).attrs({
   value: props => props.text,
 })`
   position: relative;
-  width: 14vw;
-  height: 4vw;
+  width: 100%;
+  height: 100%;
   color: white;
   z-index: 10;
-  font-size: 1.5vw;
   cursor: pointer;
   box-sizing: border-box;
   outline: 0;
   border: none;
+  font-size: inherit;
   &:hover {
     outline: 0;
     border: none;
@@ -45,6 +45,7 @@ const ButtonWrapper = styled(posed_button).attrs({
     width: 100%;
     height: 100%;
     content: attr(value);
+    font-size: inherit;
     z-index: 3;
   }
   &:after {

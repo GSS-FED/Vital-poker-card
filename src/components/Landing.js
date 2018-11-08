@@ -8,6 +8,7 @@ import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import html2canvas from 'html2canvas'
+import { desktopPositionStyle, desktopStyle, wrapperStyle } from '../layout'
 /*  posed component Setting  */
 
 const textConfig = {
@@ -132,42 +133,34 @@ const ShadowStyle = {
 }
 
 const EngtextMixin = css`
-  position: absolute;
   z-index: 2;
   ${props => props.theme.fontfamilyBold};
-  font-size: 3.2vw;
+  ${desktopPositionStyle};
+  font-size: ${props => (props.fs / 1280) * 100}vw;
   color: white;
   letter-spacing: 5.83px;
-  line-height: 60px;
+  line-height: ${(60 / 1280) * 100}vw;
   text-shadow: 0 5px 5px rgba(0, 0, 0, 0.36);
 `
 const UIFlowText = styled(posed_text)`
-  top: 33.5%;
-  left: 35.5%;
   ${EngtextMixin};
 `
 const PockerCardText = styled(posed_text)`
-  top: 39.5%;
-  left: 35.5%;
   ${EngtextMixin};
 `
 const PerfectCommunicationText = styled(posed_text)`
   position: absolute;
-  top: 35.5%;
-  left: 59.8%;
+  ${desktopPositionStyle};
   ${props => props.theme.fontfamilyLight};
-  font-size: 18px;
+  font-size: ${props => (props.fs / 1280) * 100}vw;
   color: #ffffff;
-  letter-spacing: 7px;
+  letter-spacing: ${(7 / 1280) * 100}vw;
   z-index: 2;
 `
 const BtnWrapper = styled(posed_btn)`
-  position: absolute;
-  left: 63%;
-  top: 40%;
-  width: 10.1vw;
-  height: 3.1vw;
-  font-size: 1.4vw;
+  ${desktopStyle};
+
+  font-size: ${props => (props.fs / 1280) * 100}vw;
   z-index: 10;
 `
 const btnCustomStyle = css`
@@ -197,7 +190,7 @@ class Landing extends React.Component {
 
     new ScrollMagic.Scene({
       triggerElement: this.landingWrapperDom,
-      duration: '500',
+      duration: '700',
       offset: 0,
     })
       //.addIndicators() // add indicators (requires plugin)
@@ -212,18 +205,34 @@ class Landing extends React.Component {
   render() {
     return (
       <LandingWrapper innerRef={ref => (this.landingWrapperDom = ref)}>
-        <UIFlowText pose={this.state.isShow ? 'open' : 'closed'}>
-          UI&nbsp;&nbsp;FlOW
-        </UIFlowText>
-        <PockerCardText pose={this.state.isShow ? 'open' : 'closed'}>
+        <UIFlowText
+          pose={this.state.isShow ? 'open' : 'closed'}
+          t={311}
+          l={452}
+          fs={42}
+          wh={932}
+        >
+          UI&nbsp;&nbsp;FlOW <br />
           POKER&nbsp;CARD
-        </PockerCardText>
-        <PerfectCommunicationText pose={this.state.isShow ? 'open' : 'closed'}>
+        </UIFlowText>
+        <PerfectCommunicationText
+          pose={this.state.isShow ? 'open' : 'closed'}
+          t={329}
+          l={753}
+          fs={18}
+          wh={932}
+        >
           打造完美溝通體驗
         </PerfectCommunicationText>
         <BtnWrapper
           onClick={this.getScreenShot}
           pose={this.state.isShow ? 'open' : 'closed'}
+          t={378}
+          l={816}
+          w={130}
+          h={40}
+          fs={18}
+          wh={932}
         >
           {' '}
           <Button
@@ -232,11 +241,11 @@ class Landing extends React.Component {
             backgroungSetting={backgroungSetting}
           />
         </BtnWrapper>
-        {/* <ImgBlur
+        <ImgBlur
           imgName="header"
           customStyle={HeaderStyle}
           WrapperClassName="is-passthrough"
-        /> */}
+        />
         <PockerLayer />
         <ImgBlur
           imgName="landing-bg"

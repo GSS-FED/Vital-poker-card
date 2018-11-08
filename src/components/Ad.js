@@ -6,6 +6,7 @@ import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/an
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import posed, { PoseGroup } from 'react-pose'
 import PockerButton from './Button'
+import { desktopStyle } from '../layout'
 
 /* animation state setting & init  */
 
@@ -58,11 +59,11 @@ const BoldText = styled.span`
 const ImgbasicStyle = {
   witdh: '100%',
 }
-const buttonStyle = {
-  position: 'absolute',
-  left: '43%',
-  top: '43%',
-}
+const BtnWrapper = styled.div`
+  ${desktopStyle};
+  font-size: ${props => (props.fs / 1280) * 100}vw;
+  z-index: 10;
+`
 /* ------------------------------- */
 class Ad extends React.Component {
   state = {
@@ -106,7 +107,9 @@ class Ad extends React.Component {
           <BoldText>圖像</BoldText>
           &nbsp;&nbsp;更有感覺
         </TextBox2>
-        <PockerButton btnText="立即購買" customStyle={buttonStyle} />
+        <BtnWrapper t={247} l={540} h={57} w={214} wh={529} fs={24}>
+          <PockerButton btnText="立即購買" />
+        </BtnWrapper>
       </AdWrpaaer>
     )
   }

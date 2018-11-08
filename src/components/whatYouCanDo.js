@@ -5,7 +5,7 @@ import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import posed, { PoseGroup } from 'react-pose'
-import { desktopStyle } from '../layout'
+import { desktopStyle, desktopPositionStyle } from '../layout'
 
 const Box = posed.div({
   draggable: true,
@@ -96,8 +96,7 @@ const What = styled.span`
   ${props => props.theme.fontfamilyBold};
   z-index: 3;
   font-size: 7vw;
-  top: 40%;
-  left: 11%;
+  ${desktopPositionStyle};
   color: #353942;
   opacity: 0;
   transform: translateY(70px);
@@ -112,9 +111,8 @@ const YouGet = styled.span`
   ${props => props.theme.fontfamilyReglar};
   z-index: 3;
   font-size: 3vw;
+  ${desktopPositionStyle};
   font-family: 'PingFang TC';
-  top: 55%;
-  left: 12%;
   color: #353942;
   opacity: 0;
   transform: translateY(70px);
@@ -219,8 +217,12 @@ class whatYouCanDo extends React.Component {
   render() {
     return (
       <WhatYouCanDoWrapper id="sec2">
-        <What id="sec2_what">WHAT</What>
-        <YouGet id="sec2_YCD">YOU CAN DO</YouGet>
+        <What id="sec2_what" t={461} l={91} wh={1068}>
+          WHAT
+        </What>
+        <YouGet id="sec2_YCD" t={581} l={97} wh={1068}>
+          YOU CAN DO
+        </YouGet>
         <BgWrapper id="card-wrapper">
           <ImgBlur
             imgName="sec2-bg"

@@ -14,20 +14,24 @@ export const desktopPositionStyle = css`
 `
 
 export const mobileStyle = css`
-  top: ${props => (props.mt / 667) * 100}%;
-  left: ${props => (props.ml / 375) * 100}%;
-  width: ${props => (props.mw / 375) * 100}%;
-  height: ${props => (props.mh / 667) * 100}%;
+  top: ${props => (props.mt / props.mwh) * 100}%;
+  left: ${props => (props.ml / 750) * 100}%;
+  width: ${props => (props.mw / 750) * 100}%;
+  height: ${props => (props.mh / props.mwh) * 100}%;
 `
 const mobilePositionStyle = css`
-  top: ${props => (props.mt / 667) * 100}%;
-  left: ${props => (props.ml / 375) * 100}%;
+  top: ${props => (props.mt / props.mwh) * 100}%;
+  left: ${props => (props.ml / 750) * 100}%;
 `
 const showDsektopStyle = css`
   display: ${props => (props.showDsektop ? 'block' : 'none')};
 `
 const showMobileStyle = css`
   display: ${props => (props.showMobile ? 'block' : 'none')};
+`
+export const wrapperStyle = css`
+  width: 100vw;
+  height: ${props => (props.mh / props.mw) * 100}vw;
 `
 
 export const SectionWrapper = styled.div`
