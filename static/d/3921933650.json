@@ -1,0 +1,1 @@
+{"errors":[{"message":"Cannot read property 'id' of undefined","locations":[{"line":7,"column":3}],"path":["headerImage"]}],"data":{"site":{"siteMetadata":{"title":"Gatsby Default Starter"}},"headerImage":null}}
