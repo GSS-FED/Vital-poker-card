@@ -11,7 +11,7 @@ const PockerCardDragPlayground = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: ${props => (props.isCSMaskShow ? '500' : '2')};
+  z-index: ${props => (props.isCSMaskShow ? '500' : '4')};
 `
 const PockerCardSelectPlayground = styled.div`
   height: ${props => (props.isCSMaskShow ? '100%' : '0px')};

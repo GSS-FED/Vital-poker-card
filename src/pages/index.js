@@ -28,8 +28,11 @@ const IndexPage = () => {
   return (
     <ThemeProvider theme={theme}>
       <>
-        <Landing /> <WhatYouCanDo />
-        <WhatYouGet /> <FAQ /> <Ad />
+        <Landing />
+        <WhatYouCanDo />
+        <WhatYouGet />
+        {/* <FAQ /> */}
+        <Ad />
         <Footer />
       </>
     </ThemeProvider>

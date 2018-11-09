@@ -10,9 +10,9 @@ const QueryImgBlur = ({ imgName, customStyle, WrapperClassName }) => (
           edges {
             node {
               childImageSharp {
-                sizes(maxWidth: 1920) {
+                fluid(maxWidth: 1920) {
                   originalName
-                  ...GatsbyImageSharpSizes
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }
@@ -23,13 +23,13 @@ const QueryImgBlur = ({ imgName, customStyle, WrapperClassName }) => (
     render={data => {
       const result = data.landing.edges.filter(d => {
         if (d.node.childImageSharp !== null)
-          return d.node.childImageSharp.sizes.originalName === imgName + '.png'
+          return d.node.childImageSharp.fluid.originalName === imgName + '.png'
       })
       return (
         <Img
           title="Header image"
           alt="Greek food laid out on table"
-          sizes={result[0].node.childImageSharp.sizes}
+          fluid={result[0].node.childImageSharp.fluid}
           style={
             customStyle // sizes={data.landing.edges[0].node.childImageSharp.sizes}
           }

@@ -8,7 +8,12 @@ import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import html2canvas from 'html2canvas'
-import { desktopPositionStyle, desktopStyle, wrapperStyle } from '../layout'
+import {
+  desktopPositionStyle,
+  desktopStyle,
+  wrapperStyle,
+  mobileStyle,
+} from '../layout'
 /*  posed component Setting  */
 
 const textConfig = {
@@ -56,6 +61,10 @@ const LandingWrapper = styled.div`
   width: 100vw;
   background-color: white;
   z-index: 5;
+  overflow:hidden;
+  /* @media (max-width: 768px) {
+    ${wrapperStyle};
+  } */
 `
 const LandingStyle = {
   width: '100%',
@@ -115,6 +124,11 @@ const PencilsStyle = {
   top: '28%',
   zIndex: '2',
 }
+const ImageStyleWarpper = styled.div`
+  ${desktopStyle};
+  z-index: ${props => (props.zi ? props.zi : 2)};
+  pointer-events: none;
+`
 
 const LogoStyle = {
   width: '45%',
@@ -133,7 +147,7 @@ const ShadowStyle = {
 }
 
 const EngtextMixin = css`
-  z-index: 2;
+  z-index: 3;
   ${props => props.theme.fontfamilyBold};
   ${desktopPositionStyle};
   font-size: ${props => (props.fs / 1280) * 100}vw;
@@ -155,18 +169,19 @@ const PerfectCommunicationText = styled(posed_text)`
   font-size: ${props => (props.fs / 1280) * 100}vw;
   color: #ffffff;
   letter-spacing: ${(7 / 1280) * 100}vw;
-  z-index: 2;
+  z-index: 3;
+  @media (max-width: 768px) {
+    left: 64%;
+  }
 `
 const BtnWrapper = styled(posed_btn)`
   ${desktopStyle};
 
   font-size: ${props => (props.fs / 1280) * 100}vw;
   z-index: 10;
-`
-const btnCustomStyle = css`
-  width: 100%;
-  height: 100%;
-  font-size: 1.4vw;
+  @media (max-width: 768px) {
+    left: 73%;
+  }
 `
 const backgroungSetting = css`
   background-color: transparent;
@@ -249,41 +264,27 @@ class Landing extends React.Component {
           WrapperClassName="is-passthrough"
         />
         <PockerLayer />
-        <ImgBlur
-          imgName="landing-bg"
-          customStyle={LandingStyle}
-          WrapperClassName="is-passthrough"
-        />
-        <ImgBlur
-          imgName="iMac"
-          customStyle={iMacStyle}
-          WrapperClassName="is-passthrough"
-        />
-        <ImgBlur
-          imgName="Stand"
-          customStyle={StandStyle}
-          WrapperClassName="is-passthrough"
-        />
-        <ImgBlur
-          imgName="Plant"
-          customStyle={PlantStyle}
-          WrapperClassName="is-passthrough"
-        />
-        <ImgBlur
-          imgName="Mouse"
-          customStyle={MouseStyle}
-          WrapperClassName="is-passthrough"
-        />
-        <ImgBlur
-          imgName="Keyboard"
-          customStyle={KeyboardStyle}
-          WrapperClassName="is-passthrough"
-        />
-        <ImgBlur
-          imgName="Pencils"
-          customStyle={PencilsStyle}
-          WrapperClassName="is-passthrough"
-        />
+        <ImageStyleWarpper w={1280} h={932} t={0} l={0} wh={932}>
+          <ImgBlur imgName="landing-bg" WrapperClassName="is-passthrough" />
+        </ImageStyleWarpper>
+        <ImageStyleWarpper w={1280} h={547} t={-56} l={-54} wh={932} zi={3}>
+          <ImgBlur imgName="iMac" WrapperClassName="is-passthrough" />
+        </ImageStyleWarpper>
+        <ImageStyleWarpper w={690} h={489} t={-119} l={308} wh={932} zi={2}>
+          <ImgBlur imgName="Stand" WrapperClassName="is-passthrough" />
+        </ImageStyleWarpper>
+        <ImageStyleWarpper w={506} h={520} t={132} l={-336} wh={932} zi={2}>
+          <ImgBlur imgName="Plant" WrapperClassName="is-passthrough" />
+        </ImageStyleWarpper>
+        <ImageStyleWarpper w={96} h={160} t={280} l={1213} wh={932} zi={2}>
+          <ImgBlur imgName="Mouse" WrapperClassName="is-passthrough" />
+        </ImageStyleWarpper>
+        <ImageStyleWarpper w={492} h={246} t={500} l={1072} wh={932} zi={2}>
+          <ImgBlur imgName="Keyboard" WrapperClassName="is-passthrough" />
+        </ImageStyleWarpper>
+        <ImageStyleWarpper w={139} h={234} t={266} l={1040} wh={932}>
+          <ImgBlur imgName="Pencils" WrapperClassName="is-passthrough" />
+        </ImageStyleWarpper>
         <ImgBlur
           imgName="shadow"
           customStyle={ShadowStyle}
