@@ -234,7 +234,7 @@ class PockerCardLayer extends React.Component {
     return (
       <>
         <PockerCardDragPlayground
-          innerRef={ref => {
+          ref={ref => {
             this.pokerCardWrapper = ref
           }}
           isCSMaskShow={this.state.isCSMaskShow}

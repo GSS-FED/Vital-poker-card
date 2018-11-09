@@ -183,6 +183,12 @@ class Landing extends React.Component {
       })
     }, 700)
   }
+  goShoping = () => {
+    window.open(
+      'https://shopee.tw/desbear/1322856210?version=7050b5b8ee13329ad770f300e1f9d4ea',
+      '_blank'
+    )
+  }
   componentDidMount() {
     let controller = new ScrollMagic.Controller({
       globalSceneOptions: { triggerHook: 'onCenter' },
@@ -204,7 +210,7 @@ class Landing extends React.Component {
   }
   render() {
     return (
-      <LandingWrapper innerRef={ref => (this.landingWrapperDom = ref)}>
+      <LandingWrapper ref={ref => (this.landingWrapperDom = ref)}>
         <UIFlowText
           pose={this.state.isShow ? 'open' : 'closed'}
           t={311}
@@ -225,7 +231,7 @@ class Landing extends React.Component {
           打造完美溝通體驗
         </PerfectCommunicationText>
         <BtnWrapper
-          onClick={this.getScreenShot}
+          onClick={this.goShoping}
           pose={this.state.isShow ? 'open' : 'closed'}
           t={378}
           l={816}
@@ -235,11 +241,7 @@ class Landing extends React.Component {
           wh={932}
         >
           {' '}
-          <Button
-            btnText="立即購買"
-            customStyle={btnCustomStyle}
-            backgroungSetting={backgroungSetting}
-          />
+          <Button btnText="立即購買" backgroungSetting={backgroungSetting} />
         </BtnWrapper>
         <ImgBlur
           imgName="header"

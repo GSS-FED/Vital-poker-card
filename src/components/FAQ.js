@@ -59,16 +59,14 @@ const HCWHPY = styled.div`
   color: #000000;
   white-space: nowrap;
 `
-const HelpYoubg = styled.span.attrs({
-  text: 'help you',
-})`
+const HelpYoubg = styled.span`
   position: relative;
   color: transparent;
   padding-left: 1%;
   padding-right: 1%;
   &:after {
     font-size: 3vw;
-    content: attr(text);
+    content: 'help you';
     position: absolute;
     left: 2%;
     top: 15%;
@@ -92,20 +90,24 @@ const QusetionOutterWrapper = styled(QOW)`
   position: relative;
   display: inline-block;
   width: 50%;
-  height: 80%;
-  top: 20%;
+  height: 85.26%;
+  top: 14.74%;
   overflow: hidden;
 `
-const QusetionItemsWrapper = styled(Item)`
+const QusetionItems = styled(Item)`
   background: #ffffff;
   box-shadow: -12px 22px 18px -15px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
-  min-height: 100px;
+  min-height: 10.3%;
   width: 100%;
   margin-bottom: 2%;
   padding: 18px 23px 32px 23px;
   box-sizing: border-box;
   text-align: left;
+  font-size: ${(18 / 1280) * 100}vw;
+  @media (max-width: 768px) {
+    margin-bottom: 5%;
+  }
 `
 const CommunityBtnWrapper = styled(PosedComBtn)`
   position: absolute;
@@ -173,7 +175,7 @@ class FAQ extends React.Component {
       <FAQWrapper id="sec4">
         <FAQText pose={this.state.isOpen ? 'open' : 'closed'}>FAQ</FAQText>
         <HCWHPY>
-          How can we <HelpYoubg>help you</HelpYoubg> ?
+          How can we <HelpYoubg text={'help you'}>help you</HelpYoubg> ?
         </HCWHPY>
         <CommunityBtnWrapper pose={this.state.isOpen ? 'open' : 'closed'}>
           <ImgBlur
@@ -197,26 +199,46 @@ class FAQ extends React.Component {
           />
         </BookWrapeer>
         <QusetionOutterWrapper pose={this.state.isOpen ? 'open' : 'closed'}>
-          <QusetionItemsWrapper>
+          <QusetionItems>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.
-          </QusetionItemsWrapper>
-          <QusetionItemsWrapper>
+          </QusetionItems>
+          <QusetionItems>
             There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form.
-          </QusetionItemsWrapper>
-          <QusetionItemsWrapper>
+          </QusetionItems>
+          <QusetionItems>
             The standard chunk of Lorem Ipsum used since the 1500s is reproduced
             below for those interested.
-          </QusetionItemsWrapper>
-          <QusetionItemsWrapper>
+          </QusetionItems>
+          <QusetionItems>
             All the Lorem Ipsum generators on the Internet tend to repeat
             predefined chunks as necessary, making this the first true.
-          </QusetionItemsWrapper>
-          <QusetionItemsWrapper>
+          </QusetionItems>
+          <QusetionItems>
             All the Lorem Ipsum generators on the Internet tend to repeat
             predefined chunks as necessary, making this the first true.
-          </QusetionItemsWrapper>
+          </QusetionItems>
+          <QusetionItems>
+            All the Lorem Ipsum generators on the Internet tend to repeat
+            predefined chunks as necessary, making this the first true.
+          </QusetionItems>
+          <QusetionItems>
+            All the Lorem Ipsum generators on the Internet tend to repeat
+            predefined chunks as necessary, making this the first true.
+          </QusetionItems>
+          <QusetionItems>
+            All the Lorem Ipsum generators on the Internet tend to repeat
+            predefined chunks as necessary, making this the first true.
+          </QusetionItems>
+          <QusetionItems>
+            All the Lorem Ipsum generators on the Internet tend to repeat
+            predefined chunks as necessary, making this the first true.
+          </QusetionItems>
+          <QusetionItems>
+            All the Lorem Ipsum generators on the Internet tend to repeat
+            predefined chunks as necessary, making this the first true.
+          </QusetionItems>
         </QusetionOutterWrapper>
       </FAQWrapper>
     )

@@ -99,7 +99,7 @@ class Ad extends React.Component {
   }
   render() {
     return (
-      <AdWrpaaer id="sec5" innerRef={comp => (this.adwrapper = comp)}>
+      <AdWrpaaer id="sec5" ref={comp => (this.adwrapper = comp)}>
         <BigTitle>Vital UI Flow Poker Card 上架囉！！</BigTitle>
         <BgWrapper>
           <ImgBlur

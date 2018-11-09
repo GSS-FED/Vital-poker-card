@@ -10,7 +10,7 @@ const QueryImgBlur = ({ imgName, customStyle, WrapperClassName }) => (
           edges {
             node {
               childImageSharp {
-                sizes(maxWidth: 1280) {
+                sizes(maxWidth: 1920) {
                   originalName
                   ...GatsbyImageSharpSizes
                 }
@@ -33,7 +33,7 @@ const QueryImgBlur = ({ imgName, customStyle, WrapperClassName }) => (
           style={
             customStyle // sizes={data.landing.edges[0].node.childImageSharp.sizes}
           }
-          outerWrapperClassName={WrapperClassName}
+          className={WrapperClassName}
         />
       )
     }}
