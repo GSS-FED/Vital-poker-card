@@ -4,26 +4,26 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-styled-components": "^1.8.0",
     "classnames": "^2.2.6",
-    "gatsby": "next",
-    "gatsby-image": "^1.0.55",
-    "gatsby-plugin-react-helmet": "next",
-    "gatsby-plugin-sharp": "^1.6.48",
-    "gatsby-plugin-styled-components": "^3.0.0-beta.4",
-    "gatsby-source-filesystem": "next",
-    "gatsby-transformer-sharp": "^1.6.27",
-    "gsap": "^2.0.1",
+    "gatsby": "2.0.43",
+    "gatsby-image": "^2.0.20",
+    "gatsby-plugin-react-helmet": "3.0.1",
+    "gatsby-plugin-sharp": "^2.0.12",
+    "gatsby-plugin-styled-components": "^3.0.1",
+    "gatsby-source-filesystem": "2.0.8",
+    "gatsby-transformer-sharp": "^2.1.8",
+    "gsap": "^2.0.2",
     "html2canvas": "^1.0.0-alpha.12",
     "imports-loader": "^0.8.0",
     "polished": "^2.3.0",
-    "react": "^16.4.1",
-    "react-countup": "^4.0.0-alpha.6",
-    "react-dom": "^16.4.1",
+    "react": "^16.6.1",
+    "react-countup": "^4.0.0",
+    "react-dom": "^16.6.1",
     "react-helmet": "^5.2.0",
-    "react-pose": "^3.0.2",
-    "scrollmagic": "^2.0.5",
-    "styled-components": "^3.2.1"
+    "react-pose": "^4.0.1",
+    "scrollmagic": "^2.0.6",
+    "styled-components": "^4.0.3"
   },
   "keywords": [
     "gatsby"
@@ -33,11 +33,13 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "devDependencies": {
-    "gatsby-plugin-netlify": "^2.0.0-beta.6",
-    "prettier": "^1.13.7"
+    "gatsby-plugin-netlify": "^2.0.4",
+    "gh-pages": "^2.0.1",
+    "prettier": "^1.15.1"
   },
   "repository": {
     "type": "git",

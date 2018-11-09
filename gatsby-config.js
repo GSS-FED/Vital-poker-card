@@ -20,4 +20,5 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
   ],
+  pathPrefix: '/Vital-poker-card',
 }
