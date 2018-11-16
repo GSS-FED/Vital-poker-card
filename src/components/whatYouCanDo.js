@@ -196,7 +196,7 @@ class whatYouCanDo extends React.Component {
     new ScrollMagic.Scene({
       triggerElement: '#sec2',
       duration: '1000',
-      offset: 500,
+      offset: 100,
       duration: 7000,
       reverse: false,
     })

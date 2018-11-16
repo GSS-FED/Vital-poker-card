@@ -13,6 +13,7 @@ import {
   desktopStyle,
   wrapperStyle,
   mobileStyle,
+  ContentText,
 } from '../layout'
 /*  posed component Setting  */
 
@@ -75,7 +76,7 @@ const LandingWrapper = styled.div`
   width: 100vw;
   background-color: white;
   z-index: 5;
-  overflow:hidden;
+  overflow:visible;
   /* @media (max-width: 768px) {
     ${wrapperStyle};
   } */
@@ -109,6 +110,9 @@ const UIFlowText = styled(posed_text)`
   ${EngtextMixin};
 `
 const PockerCardText = styled(posed_text)`
+  ${EngtextMixin};
+`
+const PockHintText = styled(posed_text)`
   ${EngtextMixin};
 `
 const PerfectCommunicationText = styled(posed_text)`
@@ -219,13 +223,11 @@ class Landing extends React.Component {
           {' '}
           <Button btnText="立即購買" backgroungSetting={backgroungSetting} />
         </BtnWrapper>
-        {
-          <ImageStyleWarpper w={1280} h={100} t={0} l={0} wh={932} zi={7}>
-            <HeaderOCConfig pose={this.state.isShowHeader ? 'open' : 'closed'}>
-              <ImgBlur imgName="header" WrapperClassName="is-passthrough" />
-            </HeaderOCConfig>
-          </ImageStyleWarpper>
-        }
+        <ImageStyleWarpper w={1280} h={100} t={0} l={0} wh={932} zi={7}>
+          <HeaderOCConfig pose={this.state.isShowHeader ? 'open' : 'closed'}>
+            <ImgBlur imgName="header" WrapperClassName="is-passthrough" />
+          </HeaderOCConfig>
+        </ImageStyleWarpper>
         <PockerLayer />
         <ImageStyleWarpper w={1280} h={932} t={0} l={0} wh={932} zi={2}>
           <ImgBlur imgName="landing-bg" WrapperClassName="is-passthrough" />
@@ -248,6 +250,20 @@ class Landing extends React.Component {
         <ImageStyleWarpper w={139} h={234} t={266} l={1040} wh={932} zi={5}>
           <ImgBlur imgName="Pencils" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
+        <ContentText
+          t={546}
+          l={27}
+          fs={12}
+          wh={932}
+          ta={'left'}
+          c={'#FFFFFF'}
+          zi={200}
+          lh={17}
+          showDsektop
+        >
+          點擊此堆卡片或
+          <br /> 拖拉其他在桌面上的卡片
+        </ContentText>
         <ImgBlur
           imgName="shadow"
           customStyle={ShadowStyle}

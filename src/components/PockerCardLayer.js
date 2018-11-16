@@ -253,7 +253,8 @@ class PockerCardLayer extends React.Component {
                       this.state.wrapperWidth * (((index % 8) * 11) / 100)}px) 
                     translateY(${this.state.wrapperHeight * 0.1 +
                       this.state.wrapperHeight *
-                        ((parseInt(index / 8) * 22) / 100)}px) `,
+                        ((parseInt(index / 8) * 22) / 100)}px) 
+                        rotateZ(0deg) `,
                 }
                 if (
                   this.state.cardSelected.findIndex(selectedItem => {
@@ -268,7 +269,8 @@ class PockerCardLayer extends React.Component {
                 transformStyle = {
                   transform: `
                     translateX(${this.state.wrapperWidth * 0}px) 
-                    translateY(${this.state.wrapperHeight * 0.45}px) `,
+                    translateY(${this.state.wrapperHeight * 0.64124}px) 
+                    rotateZ(20deg) `,
                 }
               }
 

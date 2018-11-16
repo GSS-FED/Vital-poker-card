@@ -99,11 +99,11 @@ export const ContentText = styled.div`
   ${desktopPositionStyle};
   z-index: 5;
   color: ${props => (props.c ? props.c : '#555555')};
-  font-family: 'PingFangTC-Medium', 'PingFang TC', 'Microsoft JhengHei', serif;
+  font-family:  'PingFang TC', 'Microsoft JhengHei', serif;
   font-size: ${props => (props.fs / 1280) * 100}vw;
+  line-height: ${props => (props.lh / 1280) * 100}vw;
   font-weight: 500;
   letter-spacing: 0px;
-  line-height: 1.2;
   ${showDsektopStyle}
   @media (max-width: 700px) {
     ${mobilePositionStyle}
