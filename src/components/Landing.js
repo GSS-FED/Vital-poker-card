@@ -96,6 +96,14 @@ const ShadowStyle = {
   zIndex: '4',
 }
 
+const PictureBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+`
+
 const EngtextMixin = css`
   z-index: 3;
   ${props => props.theme.fontfamilyBold};
@@ -191,84 +199,87 @@ class Landing extends React.Component {
   render() {
     return (
       <LandingWrapper ref={ref => (this.landingWrapperDom = ref)}>
-        <UIFlowText
-          pose={this.state.isShow ? 'open' : 'closed'}
-          t={311}
-          l={452}
-          fs={42}
-          wh={932}
-        >
-          UI&nbsp;&nbsp;FlOW <br />
-          POKER&nbsp;CARD
-        </UIFlowText>
-        <PerfectCommunicationText
-          pose={this.state.isShow ? 'open' : 'closed'}
-          t={329}
-          l={753}
-          fs={18}
-          wh={932}
-        >
-          打造完美溝通體驗
-        </PerfectCommunicationText>
-        <BtnWrapper
-          onClick={this.goShoping}
-          pose={this.state.isShow ? 'open' : 'closed'}
-          t={378}
-          l={816}
-          w={130}
-          h={40}
-          fs={18}
-          wh={932}
-        >
-          {' '}
-          <Button btnText="立即購買" backgroungSetting={backgroungSetting} />
-        </BtnWrapper>
-        <ImageStyleWarpper w={1280} h={100} t={0} l={0} wh={932} zi={7}>
-          <HeaderOCConfig pose={this.state.isShowHeader ? 'open' : 'closed'}>
-            <ImgBlur imgName="header" WrapperClassName="is-passthrough" />
-          </HeaderOCConfig>
-        </ImageStyleWarpper>
         <PockerLayer />
-        <ImageStyleWarpper w={1280} h={932} t={0} l={0} wh={932} zi={2}>
-          <ImgBlur imgName="landing-bg" WrapperClassName="is-passthrough" />
-        </ImageStyleWarpper>
-        <ImageStyleWarpper w={1280} h={547} t={-56} l={-54} wh={932} zi={6}>
-          <ImgBlur imgName="iMac" WrapperClassName="is-passthrough" />
-        </ImageStyleWarpper>
-        <ImageStyleWarpper w={690} h={489} t={-119} l={308} wh={932} zi={5}>
-          <ImgBlur imgName="Stand" WrapperClassName="is-passthrough" />
-        </ImageStyleWarpper>
-        <ImageStyleWarpper w={506} h={520} t={132} l={-336} wh={932} zi={5}>
-          <ImgBlur imgName="Plant" WrapperClassName="is-passthrough" />
-        </ImageStyleWarpper>
-        <ImageStyleWarpper w={96} h={160} t={280} l={1213} wh={932} zi={5}>
-          <ImgBlur imgName="Mouse" WrapperClassName="is-passthrough" />
-        </ImageStyleWarpper>
-        <ImageStyleWarpper w={492} h={246} t={500} l={1072} wh={932} zi={5}>
-          <ImgBlur imgName="Keyboard" WrapperClassName="is-passthrough" />
-        </ImageStyleWarpper>
-        <ImageStyleWarpper w={139} h={234} t={266} l={1040} wh={932} zi={5}>
-          <ImgBlur imgName="Pencils" WrapperClassName="is-passthrough" />
-        </ImageStyleWarpper>
-        <ContentText
-          t={546}
-          l={27}
-          fs={12}
-          wh={932}
-          ta={'left'}
-          c={'#FFFFFF'}
-          zi={200}
-          lh={17}
-          showDsektop
-        >
-          點擊此堆卡片或
-          <br /> 拖拉其他在桌面上的卡片
-        </ContentText>
-        <ImgBlur
-          imgName="shadow"
-          customStyle={ShadowStyle}
-          WrapperClassName="is-passthrough"
-        />
+        <PictureBox>
+          <UIFlowText
+            pose={this.state.isShow ? 'open' : 'closed'}
+            t={311}
+            l={452}
+            fs={42}
+            wh={932}
+          >
+            UI&nbsp;&nbsp;FlOW <br />
+            POKER&nbsp;CARD
+          </UIFlowText>
+          <PerfectCommunicationText
+            pose={this.state.isShow ? 'open' : 'closed'}
+            t={329}
+            l={753}
+            fs={18}
+            wh={932}
+          >
+            打造完美溝通體驗
+          </PerfectCommunicationText>
+          <BtnWrapper
+            onClick={this.goShoping}
+            pose={this.state.isShow ? 'open' : 'closed'}
+            t={378}
+            l={816}
+            w={130}
+            h={40}
+            fs={18}
+            wh={932}
+          >
+            {' '}
+            <Button btnText="立即購買" backgroungSetting={backgroungSetting} />
+          </BtnWrapper>
+          <ImageStyleWarpper w={1280} h={100} t={0} l={0} wh={932} zi={7}>
+            <HeaderOCConfig pose={this.state.isShowHeader ? 'open' : 'closed'}>
+              <ImgBlur imgName="header" WrapperClassName="is-passthrough" />
+            </HeaderOCConfig>
+          </ImageStyleWarpper>
+
+          <ImageStyleWarpper w={1280} h={932} t={0} l={0} wh={932} zi={2}>
+            <ImgBlur imgName="landing-bg" WrapperClassName="is-passthrough" />
+          </ImageStyleWarpper>
+          <ImageStyleWarpper w={1280} h={547} t={-56} l={-54} wh={932} zi={6}>
+            <ImgBlur imgName="iMac" WrapperClassName="is-passthrough" />
+          </ImageStyleWarpper>
+          <ImageStyleWarpper w={690} h={489} t={-119} l={308} wh={932} zi={5}>
+            <ImgBlur imgName="Stand" WrapperClassName="is-passthrough" />
+          </ImageStyleWarpper>
+          <ImageStyleWarpper w={506} h={520} t={132} l={-336} wh={932} zi={5}>
+            <ImgBlur imgName="Plant" WrapperClassName="is-passthrough" />
+          </ImageStyleWarpper>
+          <ImageStyleWarpper w={96} h={160} t={280} l={1213} wh={932} zi={5}>
+            <ImgBlur imgName="Mouse" WrapperClassName="is-passthrough" />
+          </ImageStyleWarpper>
+          <ImageStyleWarpper w={492} h={246} t={500} l={1072} wh={932} zi={5}>
+            <ImgBlur imgName="Keyboard" WrapperClassName="is-passthrough" />
+          </ImageStyleWarpper>
+          <ImageStyleWarpper w={139} h={234} t={266} l={1040} wh={932} zi={5}>
+            <ImgBlur imgName="Pencils" WrapperClassName="is-passthrough" />
+          </ImageStyleWarpper>
+          <ContentText
+            t={546}
+            l={27}
+            fs={12}
+            wh={932}
+            ta={'left'}
+            c={'#FFFFFF'}
+            zi={200}
+            lh={17}
+            showDsektop
+          >
+            點擊此堆卡片或
+            <br /> 拖拉其他在桌面上的卡片
+          </ContentText>
+          <ImgBlur
+            imgName="shadow"
+            customStyle={ShadowStyle}
+            WrapperClassName="is-passthrough"
+          />
+        </PictureBox>
       </LandingWrapper>
     )
   }
