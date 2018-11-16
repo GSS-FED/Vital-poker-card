@@ -16,7 +16,7 @@ import {
 } from '../layout'
 /*  posed component Setting  */
 
-const textConfig = {
+const posed_text = posed.div({
   open: {
     y: 0,
     opacity: 1,
@@ -32,9 +32,26 @@ const textConfig = {
       duration: 200,
     },
   },
-}
+})
 
-const buttonConfig = {
+const HeaderOCConfig = posed.div({
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 700,
+    },
+  },
+  closed: {
+    y: '-100%',
+    opacity: 1,
+    transition: {
+      duration: 500,
+    },
+  },
+})
+
+const posed_btn = posed.div({
   open: {
     opacity: 1,
     scale: 1,
@@ -50,10 +67,7 @@ const buttonConfig = {
       duration: 200,
     },
   },
-}
-const posed_text = posed.div(textConfig)
-const posed_btn = posed.div(buttonConfig)
-/*  Styled component Setting  */
+})
 
 const LandingWrapper = styled.div`
   position: relative;
@@ -66,78 +80,13 @@ const LandingWrapper = styled.div`
     ${wrapperStyle};
   } */
 `
-const LandingStyle = {
-  width: '100%',
-}
-const HeaderStyle = {
-  width: '100%',
-  position: 'absolute',
-  left: '0px',
-  top: '0px',
-  zIndex: '10',
-}
-const iMacStyle = {
-  width: '70%',
-  position: 'absolute',
-  left: '50%',
-  top: '0px',
-  transform: 'translateX(-55%)',
-  zIndex: '3',
-}
 
-const StandStyle = {
-  width: '40%',
-  position: 'absolute',
-  left: '50%',
-  top: '0px',
-  transform: 'translateX(-50%)',
-  zIndex: '2',
-}
-
-const PlantStyle = {
-  width: '10%',
-  position: 'absolute',
-  left: '0',
-  top: '20%',
-  zIndex: '2',
-}
-const MouseStyle = {
-  width: '4%',
-  position: 'absolute',
-  right: '0',
-  top: '30%',
-  zIndex: '2',
-}
-
-const KeyboardStyle = {
-  width: '13%',
-  position: 'absolute',
-  right: '0',
-  top: '55%',
-  zIndex: '2',
-}
-
-const PencilsStyle = {
-  width: '9%',
-  position: 'absolute',
-  right: '6%',
-  top: '28%',
-  zIndex: '2',
-}
 const ImageStyleWarpper = styled.div`
   ${desktopStyle};
   z-index: ${props => (props.zi ? props.zi : 2)};
   pointer-events: none;
 `
 
-const LogoStyle = {
-  width: '45%',
-  position: 'absolute',
-  left: '50%',
-  top: '28%',
-  transform: 'translateX(-50%)',
-  zIndex: '2',
-}
 const ShadowStyle = {
   width: '80%',
   position: 'absolute',
@@ -189,7 +138,7 @@ const backgroungSetting = css`
 `
 
 class Landing extends React.Component {
-  state = { isShow: false }
+  state = { isShow: false, isShowHeader: true }
   getScreenShot = () => {
     this.setState({ isShow: false })
     setTimeout(() => {
@@ -205,6 +154,7 @@ class Landing extends React.Component {
     )
   }
   componentDidMount() {
+    window.onscroll = this.scrollDiraction
     let controller = new ScrollMagic.Controller({
       globalSceneOptions: { triggerHook: 'onCenter' },
     })
@@ -222,6 +172,17 @@ class Landing extends React.Component {
         this.setState({ isShow: false })
       })
       .addTo(controller)
+  }
+  scrollDiraction = event => {
+    var st = window.pageYOffset || document.documentElement.scrollTop
+    let direction = st > window['lastScrollTop'] ? 'down' : 'up'
+
+    window['lastScrollTop'] = st <= 0 ? 0 : st
+    console.log(direction)
+    if (direction === 'up' && !this.state.isShowHeader)
+      this.setState({ isShowHeader: true })
+    else if (direction === 'down' && this.state.isShowHeader)
+      this.setState({ isShowHeader: false })
   }
   render() {
     return (
@@ -258,31 +219,33 @@ class Landing extends React.Component {
           {' '}
           <Button btnText="立即購買" backgroungSetting={backgroungSetting} />
         </BtnWrapper>
-        <ImgBlur
-          imgName="header"
-          customStyle={HeaderStyle}
-          WrapperClassName="is-passthrough"
-        />
+        {
+          <ImageStyleWarpper w={1280} h={100} t={0} l={0} wh={932} zi={7}>
+            <HeaderOCConfig pose={this.state.isShowHeader ? 'open' : 'closed'}>
+              <ImgBlur imgName="header" WrapperClassName="is-passthrough" />
+            </HeaderOCConfig>
+          </ImageStyleWarpper>
+        }
         <PockerLayer />
-        <ImageStyleWarpper w={1280} h={932} t={0} l={0} wh={932}>
+        <ImageStyleWarpper w={1280} h={932} t={0} l={0} wh={932} zi={2}>
           <ImgBlur imgName="landing-bg" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
-        <ImageStyleWarpper w={1280} h={547} t={-56} l={-54} wh={932} zi={3}>
+        <ImageStyleWarpper w={1280} h={547} t={-56} l={-54} wh={932} zi={6}>
           <ImgBlur imgName="iMac" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
-        <ImageStyleWarpper w={690} h={489} t={-119} l={308} wh={932} zi={2}>
+        <ImageStyleWarpper w={690} h={489} t={-119} l={308} wh={932} zi={5}>
           <ImgBlur imgName="Stand" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
-        <ImageStyleWarpper w={506} h={520} t={132} l={-336} wh={932} zi={2}>
+        <ImageStyleWarpper w={506} h={520} t={132} l={-336} wh={932} zi={5}>
           <ImgBlur imgName="Plant" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
-        <ImageStyleWarpper w={96} h={160} t={280} l={1213} wh={932} zi={2}>
+        <ImageStyleWarpper w={96} h={160} t={280} l={1213} wh={932} zi={5}>
           <ImgBlur imgName="Mouse" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
-        <ImageStyleWarpper w={492} h={246} t={500} l={1072} wh={932} zi={2}>
+        <ImageStyleWarpper w={492} h={246} t={500} l={1072} wh={932} zi={5}>
           <ImgBlur imgName="Keyboard" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
-        <ImageStyleWarpper w={139} h={234} t={266} l={1040} wh={932}>
+        <ImageStyleWarpper w={139} h={234} t={266} l={1040} wh={932} zi={5}>
           <ImgBlur imgName="Pencils" WrapperClassName="is-passthrough" />
         </ImageStyleWarpper>
         <ImgBlur
