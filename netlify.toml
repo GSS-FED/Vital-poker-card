@@ -1,0 +1,2 @@
+[build.environment]
+  API_AUTH = $API_AUTH
