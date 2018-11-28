@@ -8,6 +8,7 @@ import ScrollMagic from 'scrollmagic'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/animation.gsap.min'
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min'
 import html2canvas from 'html2canvas'
+import plant from '../img/Landing/Plant.png'
 import {
   desktopPositionStyle,
   desktopStyle,
@@ -74,9 +75,10 @@ const LandingWrapper = styled.div`
   position: relative;
   height: 72.8124vw;
   width: 100vw;
-  background-color: white;
+  background-color: rgb(43,42,42) ;
   z-index: 5;
   overflow:visible;
+  
   /* @media (max-width: 768px) {
     ${wrapperStyle};
   } */
@@ -85,7 +87,7 @@ const LandingWrapper = styled.div`
 const ImageStyleWarpper = styled.div`
   ${desktopStyle};
   z-index: ${props => (props.zi ? props.zi : 2)};
-  pointer-events: none;
+  /* pointer-events: none; */
 `
 
 const ShadowStyle = {
@@ -149,13 +151,69 @@ const backgroungSetting = css`
   background-image: linear-gradient(11deg, #6654ec 0%, #55c9f9 100%);
 `
 
+const postUrl = 'https://imgur.com/a/4M5xeBG'
+const token = process.env.API_AUTH
+const tokenType = 'bearer'
+const albumId = '4M5xeBG'
+
 class Landing extends React.Component {
-  state = { isShow: false, isShowHeader: true }
+  state = {
+    isShow: false,
+    isShowHeader: true,
+    shareUrl: 'https://imgur.com/Tex6U9p',
+    shareImageId: 'Tex6U9p',
+  }
+  uploadImage = image => {
+    console.log('????', plant)
+    console.log('nobase???', image.replace('data:image/png;base64,', ''))
+    console.log(
+      'nobaseCompare',
+      image.replace('data:image/png;base64,', '') === image.split(',')[1]
+    )
+    const formData = new FormData()
+    formData.append('image', image.split(',')[1])
+    formData.append('album', '4M5xeBG')
+
+    fetch('https://api.imgur.com/3/image', {
+      //mode: 'cors',
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+      body: formData,
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(myJson => {
+        console.log(myJson, 'fvevfevefvefv ')
+
+        this.setState(
+          { shareUrl: myJson.data.link, shareImageId: myJson.data.id },
+          () => {
+            this.fbshareCurrentPage()
+          }
+        )
+      })
+  }
+  fbshareCurrentPage = () => {
+    console.log(this.state.shareUrl, '!@#$')
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u=' +
+        escape(this.state.shareUrl) +
+        '&t=' +
+        document.title,
+      '',
+      'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'
+    )
+    return false
+  }
   getScreenShot = () => {
+    const outerthis = this
     this.setState({ isShow: false })
     setTimeout(() => {
       html2canvas(this.landingWrapperDom).then(function(canvas) {
-        document.body.appendChild(canvas)
+        outerthis.uploadImage(canvas.toDataURL('image/png'))
       })
     }, 700)
   }
@@ -196,49 +254,61 @@ class Landing extends React.Component {
     else if (direction === 'down' && this.state.isShowHeader)
       this.setState({ isShowHeader: false })
   }
+
   render() {
     return (
       <LandingWrapper ref={ref => (this.landingWrapperDom = ref)}>
+        <UIFlowText
+          pose={this.state.isShow ? 'open' : 'closed'}
+          t={311}
+          l={452}
+          fs={42}
+          wh={932}
+        >
+          UI&nbsp;&nbsp;FlOW <br />
+          POKER&nbsp;CARD
+        </UIFlowText>
+        <PerfectCommunicationText
+          pose={this.state.isShow ? 'open' : 'closed'}
+          t={329}
+          l={753}
+          fs={18}
+          wh={932}
+        >
+          打造完美溝通體驗
+        </PerfectCommunicationText>
+        <BtnWrapper
+          onClick={this.goShoping}
+          pose={this.state.isShow ? 'open' : 'closed'}
+          t={378}
+          l={816}
+          w={130}
+          h={40}
+          fs={18}
+          wh={932}
+        >
+          {' '}
+          <Button btnText="立即購買" backgroungSetting={backgroungSetting} />
+        </BtnWrapper>
         <PockerLayer />
+        <ImageStyleWarpper w={1280} h={100} t={0} l={0} wh={932} zi={7}>
+          <HeaderOCConfig pose={this.state.isShowHeader ? 'open' : 'closed'}>
+            <ImgBlur imgName="header" WrapperClassName="is-passthrough" />
+            <ImageStyleWarpper
+              w={110}
+              h={40}
+              t={30}
+              l={1139}
+              wh={100}
+              zi={5}
+              style={{ cursor: 'pointer' }}
+              onClick={this.getScreenShot}
+            >
+              <ImgBlur imgName="share-button" />
+            </ImageStyleWarpper>
+          </HeaderOCConfig>
+        </ImageStyleWarpper>
         <PictureBox>
-          <UIFlowText
-            pose={this.state.isShow ? 'open' : 'closed'}
-            t={311}
-            l={452}
-            fs={42}
-            wh={932}
-          >
-            UI&nbsp;&nbsp;FlOW <br />
-            POKER&nbsp;CARD
-          </UIFlowText>
-          <PerfectCommunicationText
-            pose={this.state.isShow ? 'open' : 'closed'}
-            t={329}
-            l={753}
-            fs={18}
-            wh={932}
-          >
-            打造完美溝通體驗
-          </PerfectCommunicationText>
-          <BtnWrapper
-            onClick={this.goShoping}
-            pose={this.state.isShow ? 'open' : 'closed'}
-            t={378}
-            l={816}
-            w={130}
-            h={40}
-            fs={18}
-            wh={932}
-          >
-            {' '}
-            <Button btnText="立即購買" backgroungSetting={backgroungSetting} />
-          </BtnWrapper>
-          <ImageStyleWarpper w={1280} h={100} t={0} l={0} wh={932} zi={7}>
-            <HeaderOCConfig pose={this.state.isShowHeader ? 'open' : 'closed'}>
-              <ImgBlur imgName="header" WrapperClassName="is-passthrough" />
-            </HeaderOCConfig>
-          </ImageStyleWarpper>
-
           <ImageStyleWarpper w={1280} h={932} t={0} l={0} wh={932} zi={2}>
             <ImgBlur imgName="landing-bg" WrapperClassName="is-passthrough" />
           </ImageStyleWarpper>
@@ -260,6 +330,7 @@ class Landing extends React.Component {
           <ImageStyleWarpper w={139} h={234} t={266} l={1040} wh={932} zi={5}>
             <ImgBlur imgName="Pencils" WrapperClassName="is-passthrough" />
           </ImageStyleWarpper>
+
           <ContentText
             t={546}
             l={27}
@@ -280,6 +351,21 @@ class Landing extends React.Component {
             WrapperClassName="is-passthrough"
           />
         </PictureBox>
+        <iframe
+          src={
+            'https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fi.imgur.com%2F' +
+            this.state.shareImageId +
+            '.png&layout=button&size=small&mobile_iframe=true&width=52&height=20&appId'
+          }
+          width="52"
+          height="20"
+          style={{ border: 'none', overflow: 'hidden', opacity: 0.1 }}
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+          allow="encrypted-media"
+          ref={ref => (this.iframeRef = ref)}
+        />
       </LandingWrapper>
     )
   }

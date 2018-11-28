@@ -37,6 +37,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "devDependencies": {
+    "dotenv": "^6.1.0",
     "gatsby-plugin-netlify": "^2.0.4",
     "gh-pages": "^2.0.1",
     "prettier": "^1.15.1"

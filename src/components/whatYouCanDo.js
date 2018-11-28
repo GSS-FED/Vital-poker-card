@@ -55,10 +55,13 @@ const CircleWrapper = styled(Box)`
     pointer-events: none;
     div {
       opacity: 0;
-      transition: opacity 0.35s ease-in-out 0.1s;
+      transform: scale(0.8);
+      transition: opacity 0.35s ease-in-out 0.1s,
+        transform 0.35s ease-in-out 0.1s;
     }
     &.is-alien-show {
       div {
+        transform: scale(1);
         opacity: 1;
       }
     }
