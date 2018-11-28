@@ -155,7 +155,7 @@ const postUrl = 'https://imgur.com/a/4M5xeBG'
 const token = process.env.API_AUTH
 const tokenType = 'bearer'
 const albumId = '4M5xeBG'
-
+console.log(process.env)
 class Landing extends React.Component {
   state = {
     isShow: false,
@@ -164,12 +164,6 @@ class Landing extends React.Component {
     shareImageId: 'Tex6U9p',
   }
   uploadImage = image => {
-    console.log('????', plant)
-    console.log('nobase???', image.replace('data:image/png;base64,', ''))
-    console.log(
-      'nobaseCompare',
-      image.replace('data:image/png;base64,', '') === image.split(',')[1]
-    )
     const formData = new FormData()
     formData.append('image', image.split(',')[1])
     formData.append('album', '4M5xeBG')
@@ -186,8 +180,6 @@ class Landing extends React.Component {
         return response.json()
       })
       .then(myJson => {
-        console.log(myJson, 'fvevfevefvefv ')
-
         this.setState(
           { shareUrl: myJson.data.link, shareImageId: myJson.data.id },
           () => {
@@ -197,7 +189,6 @@ class Landing extends React.Component {
       })
   }
   fbshareCurrentPage = () => {
-    console.log(this.state.shareUrl, '!@#$')
     window.open(
       'https://www.facebook.com/sharer/sharer.php?u=' +
         escape(this.state.shareUrl) +
@@ -248,7 +239,6 @@ class Landing extends React.Component {
     let direction = st > window['lastScrollTop'] ? 'down' : 'up'
 
     window['lastScrollTop'] = st <= 0 ? 0 : st
-    console.log(direction)
     if (direction === 'up' && !this.state.isShowHeader)
       this.setState({ isShowHeader: true })
     else if (direction === 'down' && this.state.isShowHeader)
