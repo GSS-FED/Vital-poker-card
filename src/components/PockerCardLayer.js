@@ -190,8 +190,8 @@ class PockerCardLayer extends React.Component {
     wrapperHeight: 0,
   }
   componentDidMount() {
-    console.log(allPokerCardSerialNoArray())
-    console.log(this.ref, '/?????')
+    //console.log(allPokerCardSerialNoArray())
+    //console.log(this.ref, '/?????')
     this.setState({
       wrapperWidth: this.pokerCardWrapper.offsetWidth,
       wrapperHeight: this.pokerCardWrapper.offsetHeight,
@@ -210,13 +210,13 @@ class PockerCardLayer extends React.Component {
     })
   }
   cardSelectClick = (CardSerialNo, e) => {
-    console.log(CardSerialNo, e)
+    //console.log(CardSerialNo, e)
     if (this.state.isCSMaskShow) {
       e.stopPropagation()
       const targetIndex = this.state.cardSelected.findIndex(d => {
         return d === CardSerialNo
       })
-      console.log(targetIndex)
+      //console.log(targetIndex)
       if (targetIndex === -1) {
         this.setState({
           cardSelected: [...this.state.cardSelected, ...CardSerialNo],
@@ -226,7 +226,7 @@ class PockerCardLayer extends React.Component {
         mutatedstate.splice(targetIndex, 1)
         this.setState({ cardSelected: mutatedstate })
       }
-      console.log(this.state.cardSelected, '!!!!!!!!!!!!')
+      //console.log(this.state.cardSelected, '!!!!!!!!!!!!')
     } else {
     }
   }
@@ -300,7 +300,7 @@ class PockerCardLayer extends React.Component {
             const eachLeft = 15 + index * 2 + '%'
 
             const eachCardStyle = { ...cardSelectbasicStyle, left: eachLeft }
-            console.log(eachCardStyle)
+            //console.log(eachCardStyle)
             return (
               <DragCard
                 imgName={d}

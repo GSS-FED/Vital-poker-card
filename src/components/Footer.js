@@ -66,7 +66,7 @@ class Footer extends React.Component {
     isOpen: false,
   }
   handleMenuOpenClick = isOpen => {
-    console.log(this.state.isOpen)
+    //console.log(this.state.isOpen)
     this.setState({ isOpen: !this.state.isOpen })
   }
   componentDidMount() {

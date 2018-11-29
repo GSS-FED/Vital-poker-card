@@ -30,7 +30,7 @@ export default function withDragDrop(Component) {
     // this.props.children(this.state)
 
     componentDidMount() {
-      console.log(this.ref, Component, 'yoyoyoyoyoyoyo', this.ref.refs)
+      //console.log(this.ref, Component, 'yoyoyoyoyoyoyo', this.ref.refs)
       this.ref.refs.addEventListener('mousedown', this.handleMouseDown)
       this.ref.refs.addEventListener('mouseup', this.handleMouseUp)
       this.ref.refs.addEventListener('touchstart', this.handleMouseDown)
@@ -47,11 +47,11 @@ export default function withDragDrop(Component) {
 
     handleClick = e => {
       const finalcount = this.state.mouseCount + 1
-      console.log(finalcount)
+      //console.log(finalcount)
       this.setState({ mouseCount: finalcount })
     }
     handleMouse = e => {
-      console.log('move', e, e.clientX, e.clientY)
+      //console.log('move', e, e.clientX, e.clientY)
       if (e.type === 'touchmove') {
         MousePosition.x = e.changedTouches[0].clientX
         MousePosition.y = e.changedTouches[0].clientY
@@ -76,7 +76,7 @@ export default function withDragDrop(Component) {
     }
     handleMouseDown = e => {
       e.preventDefault()
-      console.log('card' + e.type)
+      //console.log('card' + e.type)
       if (this.state.mouseX === undefined) {
         if (e.type === 'touchstart') {
           firstMousePosition.x =
@@ -104,13 +104,13 @@ export default function withDragDrop(Component) {
             e.clientY - this.ref.refs.offsetTop - this.state.mouseY
         }
       }
-      console.log(
-        firstMousePosition,
-        this.ref.refs.offsetLeft,
-        this.ref.refs.offsetTop
-      )
+      // console.log(
+      //   firstMousePosition,
+      //   this.ref.refs.offsetLeft,
+      //   this.ref.refs.offsetTop
+      // )
       this.setState({ isDraging: true, zIndex: 100 })
-      console.log(e)
+      //console.log(e)
       if (e.type === 'mousedown')
         document.addEventListener('mousemove', this.handleMouse)
       else if (e.type === 'touchstart')
@@ -118,7 +118,7 @@ export default function withDragDrop(Component) {
     }
 
     handleMouseUp = e => {
-      console.log('card' + e.type)
+      //console.log('card' + e.type)
       firstMousePosition.x = 0
       firstMousePosition.y = 0
       if (e.type === 'mouseup')

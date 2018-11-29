@@ -147,7 +147,7 @@ class WhatYouGet extends React.Component {
     })
       .on('enter', () => {
         this.setState({ isNumberRun: true, isShow: true })
-        console.log('#sec3 enter', this.state.isNumberRun)
+        //console.log('#sec3 enter', this.state.isNumberRun)
       })
       .addTo(controller)
   }

@@ -155,7 +155,7 @@ const postUrl = 'https://imgur.com/a/4M5xeBG'
 const token = process.env.GATSBY_API_AUTH
 const tokenType = 'bearer'
 const albumId = '4M5xeBG'
-console.log(process.env, process.env.GATSBY_API_AUTH, 'yoyoyoyoyoyo!!!!!')
+
 class Landing extends React.Component {
   state = {
     isShow: false,

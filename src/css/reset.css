@@ -136,3 +136,12 @@ table {
   position: absolute !important;
   z-index: -1;
 }
+
+@keyframes blur-text {
+  0% {
+    filter: blur(0px);
+  }
+  100% {
+    filter: blur(4px);
+  }
+}

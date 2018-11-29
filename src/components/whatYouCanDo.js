@@ -191,7 +191,7 @@ class whatYouCanDo extends React.Component {
     isAlienShow: false,
   }
   componentDidMount() {
-    console.log('componentDidMount')
+    //console.log('componentDidMount')
     var controller = new ScrollMagic.Controller({
       globalSceneOptions: { triggerHook: 'onEnter' },
     })
