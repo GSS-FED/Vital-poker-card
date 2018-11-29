@@ -10,6 +10,7 @@ import Ad from '../components/Ad'
 import Footer from '../components/Footer'
 import { Helmet } from 'react-helmet'
 import ogimgae from '../img/meta/og-vitalpokercard.png'
+import UploadLoading from '../components/UploadLoading'
 
 const theme = {
   fontfamilyReglar: {
@@ -30,6 +31,7 @@ const IndexPage = () => {
   return (
     <ThemeProvider theme={theme}>
       <>
+        {/* <UploadLoading /> */}
         <Landing />
         <WhatYouCanDo />
         <WhatYouGet />
